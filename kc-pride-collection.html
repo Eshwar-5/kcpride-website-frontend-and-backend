@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collection – KC Pride</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:#2563b0; --orange:#e05a22; --dark:#0e1117;
+  --cream:#f5f0eb; --light:#f9f7f5; --border:#e0d8cf;
+  --green:#1a7a44; --red:#c0392b;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Montserrat',sans-serif;background:var(--light);color:var(--dark);overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;width:100%;z-index:300;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:72px;}
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+.logo-svg{width:46px;height:46px;}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:600;letter-spacing:.08em;color:var(--dark);}
+.brand-name span{color:var(--orange);}
+.nav-right{display:flex;align-items:center;gap:16px;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{text-decoration:none;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:#555;font-weight:500;transition:color .25s;}
+.nav-links a:hover,.nav-links a.active{color:var(--orange);}
+.cart-btn{position:relative;display:flex;align-items:center;gap:8px;background:var(--dark);color:white;border:none;padding:10px 20px;font-family:'Montserrat',sans-serif;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:2px;transition:background .25s;}
+.cart-btn:hover{background:var(--orange);}
+.cart-badge{position:absolute;top:-6px;right:-6px;background:var(--orange);color:white;font-size:.55rem;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;display:none;}
+.cart-badge.show{display:flex;}
+
+/* ── HERO ── */
+.collection-hero{background:linear-gradient(135deg,#0e1117 0%,#1a3a6b 60%,#2563b0 100%);padding:52px 8% 44px;position:relative;overflow:hidden;}
+.collection-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10S0 14.5 0 20s4.5 10 10 10 10-4.5 10-10zm10 0c0 5.5 4.5 10 10 10s10-4.5 10-10-4.5-10-10-10-10 4.5-10 10z'/%3E%3C/g%3E%3C/svg%3E");}
+.hero-content{position:relative;z-index:2;}
+.hero-eyebrow{font-size:.63rem;letter-spacing:.3em;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:10px;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:300;color:white;line-height:1.1;}
+.hero-title em{font-style:italic;color:#90b8e8;}
+.hero-subtitle{color:rgba(255,255,255,.5);font-size:.78rem;font-weight:300;margin-top:10px;}
+
+/* ── FILTER BAR ── */
+.filter-bar{background:white;border-bottom:1px solid var(--border);padding:0 8%;display:flex;align-items:center;position:sticky;top:72px;z-index:100;overflow-x:auto;}
+.filter-btn{border:none;background:none;padding:16px 22px;font-family:'Montserrat',sans-serif;font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;font-weight:500;color:#777;cursor:pointer;border-bottom:2.5px solid transparent;transition:all .25s;white-space:nowrap;}
+/* ── FILTER BUTTONS ── */
+.filter-apply-btn {
+  display: block;
+  width: 100%;
+  background: var(--orange);
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.25s;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+}
+.filter-apply-btn:hover { background: var(--blue); }
+
+.filter-reset-btn {
+  display: block;
+  width: 100%;
+  background: white;
+  color: var(--dark);
+  border: 1.5px solid var(--border);
+  padding: 9px 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.63rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.25s;
+  box-sizing: border-box;
+}
+.filter-reset-btn:hover { border-color: var(--orange); color: var(--orange); }
+.filter-btn:hover{color:var(--blue);}
+.filter-btn.active{color:var(--orange);border-bottom-color:var(--orange);font-weight:600;}
+.filter-count{background:var(--orange);color:white;font-size:.52rem;padding:2px 6px;border-radius:10px;margin-left:5px;font-weight:700;}
+
+/* ── LAYOUT ── */
+.main-layout{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 190px);align-items:start;}
+
+/* ── SIDEBAR ── */
+.sidebar{background:white;border-right:1px solid var(--border);padding:28px 20px;position:sticky;top:121px;height:calc(100vh - 121px);overflow-y:auto;overflow-x:hidden;width:260px;}
+.sidebar-section{margin-bottom:28px;}
+.sidebar-title{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:#999;font-weight:600;margin-bottom:14px;padding-bottom:9px;border-bottom:1px solid var(--border);}
+.sidebar-options{display:flex;flex-direction:column;gap:9px;}
+.sidebar-option{display:flex;align-items:center;gap:10px;cursor:pointer;}
+.custom-check{width:17px;height:17px;border:1.5px solid var(--border);border-radius:2px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;}
+.sidebar-option.checked .custom-check{background:var(--blue);border-color:var(--blue);}
+.sidebar-option.checked .custom-check::after{content:'✓';color:white;font-size:.6rem;font-weight:700;}
+.sidebar-option label{font-size:.74rem;color:#444;cursor:pointer;font-weight:400;}
+.sidebar-option.checked label{color:var(--blue);font-weight:500;}
+.color-swatches{display:flex;flex-wrap:wrap;gap:9px;}
+.color-swatch{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .2s;}
+.color-swatch:hover,.color-swatch.active{border-color:var(--orange);transform:scale(1.15);}
+.price-range{margin-top:4px;}
+.range-input{width:100%;-webkit-appearance:none;height:3px;background:linear-gradient(90deg,var(--blue) 60%,var(--border) 60%);border-radius:2px;outline:none;cursor:pointer;}
+.range-input::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;border-radius:50%;background:var(--orange);cursor:pointer;}
+.range-labels{display:flex;justify-content:space-between;margin-top:7px;font-size:.7rem;color:#666;}
+
+/* ── PRODUCT AREA ── */
+.product-area{padding:28px 28px;min-width:0;overflow:hidden;}
+.area-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;}
+.result-count{font-size:.76rem;color:#777;font-weight:300;}
+.result-count strong{color:var(--dark);font-weight:600;}
+.sort-select{border:1px solid var(--border);background:white;padding:9px 14px;font-family:'Montserrat',sans-serif;font-size:.7rem;color:#444;border-radius:2px;outline:none;cursor:pointer;}
+
+/* ── CARDS ── */
+.products-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;}
+.product-card{background:white;border-radius:4px;overflow:hidden;border:1px solid var(--border);transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;}
+.product-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.1);border-color:transparent;}
+.card-img{height:220px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;overflow:hidden;}
+.img-bg-1{background:linear-gradient(135deg,#dce9f8,#b0cef0);}
+.img-bg-2{background:linear-gradient(135deg,#fde8de,#f7c5ab);}
+.img-bg-3{background:linear-gradient(135deg,#def5ec,#a8dfc8);}
+.img-bg-4{background:linear-gradient(135deg,#f0f0f0,#d5d5d5);}
+.img-bg-5{background:linear-gradient(135deg,#fdf4de,#f5dea8);}
+.img-bg-6{background:linear-gradient(135deg,#f0e0f5,#d8b0e8);}
+.img-bg-7{background:linear-gradient(135deg,#dff0f8,#a8d5f0);}
+.img-bg-8{background:linear-gradient(135deg,#fde8e8,#f5b8b8);}
+.img-bg-9{background:linear-gradient(135deg,#e8f5de,#b8e0a8);}
+.card-tag{position:absolute;top:12px;left:12px;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:4px 9px;border-radius:2px;z-index:2;}
+.tag-new{background:var(--orange);color:white;}
+.tag-best{background:var(--blue);color:white;}
+.tag-sale{background:var(--green);color:white;}
+.card-wish{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.9);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;z-index:2;transition:all .2s;}
+.card-wish:hover{background:white;transform:scale(1.1);}
+.card-body{padding:18px;}
+.card-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--dark);margin-bottom:3px;}
+.card-sub{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:12px;}
+.card-price{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--blue);}
+.card-price .old{font-size:.82rem;color:#bbb;text-decoration:line-through;margin-right:5px;font-weight:300;}
+.card-actions{display:flex;gap:8px;margin-top:12px;}
+.card-detail-btn{flex:1;background:white;color:var(--dark);border:1.5px solid var(--border);padding:9px 10px;font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:2px;transition:all .25s;}
+.card-detail-btn:hover{border-color:var(--blue);color:var(--blue);}
+.card-cart-btn{flex:2;background:var(--dark);color:white;border:none;padding:9px 10px;font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:2px;transition:background .25s;}
+.card-cart-btn:hover{background:var(--orange);}
+.card-cart-btn.in-cart{background:var(--green);}
+
+/* ── PAGINATION ── */
+.pagination{display:flex;align-items:center;justify-content:center;gap:10px;padding:44px 0 56px;}
+.page-btn{width:42px;height:42px;border:1.5px solid var(--border);background:white;border-radius:2px;font-family:'Montserrat',sans-serif;font-size:.73rem;font-weight:600;color:#555;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;}
+.page-btn:hover{border-color:var(--blue);color:var(--blue);}
+.page-btn.active{background:var(--blue);border-color:var(--blue);color:white;}
+.page-btn.disabled{opacity:.35;cursor:not-allowed;pointer-events:none;}
+.page-nav{display:flex;align-items:center;gap:7px;border:1.5px solid var(--border);background:white;border-radius:2px;padding:0 18px;height:42px;font-family:'Montserrat',sans-serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;color:#444;cursor:pointer;transition:all .25s;}
+.page-nav:hover{background:var(--blue);border-color:var(--blue);color:white;}
+.page-nav.disabled{opacity:.35;cursor:not-allowed;pointer-events:none;}
+.page-nav svg{width:15px;height:15px;}
+
+/* ── PRODUCT DETAIL OVERLAY ── */
+.overlay{position:fixed;inset:0;z-index:500;background:rgba(14,17,23,.72);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;}
+.overlay.open{opacity:1;pointer-events:all;}
+.detail-modal{background:white;width:92%;max-width:880px;border-radius:6px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;max-height:92vh;position:relative;transform:translateY(20px) scale(.97);transition:transform .3s;}
+.overlay.open .detail-modal{transform:translateY(0) scale(1);}
+.modal-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:var(--dark);color:white;border:none;font-size:1rem;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.modal-close:hover{background:var(--orange);}
+.modal-nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:white;border:1.5px solid var(--border);font-size:1.1rem;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 4px 14px rgba(0,0,0,.12);color:var(--dark);}
+.modal-nav-btn:hover{background:var(--blue);color:white;border-color:var(--blue);}
+.modal-prev{left:-19px;}
+.modal-next{right:-19px;}
+.modal-img{min-height:420px;display:flex;align-items:center;justify-content:center;font-size:6.5rem;}
+.modal-info{padding:40px 36px;overflow-y:auto;}
+.modal-eyebrow{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:8px;}
+.modal-name{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:600;color:var(--dark);line-height:1.1;margin-bottom:6px;}
+.modal-price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--blue);font-weight:600;margin-bottom:18px;}
+.modal-price .old-price{font-size:.95rem;color:#bbb;text-decoration:line-through;margin-right:7px;font-weight:300;}
+.modal-desc{font-size:.78rem;line-height:1.8;color:#666;font-weight:300;margin-bottom:22px;}
+.modal-attrs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
+.modal-attr{background:var(--light);padding:11px 14px;border-radius:3px;}
+.modal-attr-label{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:#999;font-weight:600;margin-bottom:3px;}
+.modal-attr-val{font-size:.78rem;color:var(--dark);font-weight:500;}
+.size-picker{margin-bottom:18px;}
+.size-label{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#666;font-weight:600;margin-bottom:9px;}
+.size-options{display:flex;gap:7px;flex-wrap:wrap;}
+.size-opt{width:38px;height:38px;border:1.5px solid var(--border);background:white;border-radius:2px;font-size:.7rem;font-weight:600;font-family:'Montserrat',sans-serif;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+.size-opt:hover,.size-opt.active{background:var(--blue);border-color:var(--blue);color:white;}
+
+/* QUANTITY CONTROL */
+.qty-row{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.qty-label{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#666;font-weight:600;}
+.qty-control{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:2px;overflow:hidden;}
+.qty-btn{width:34px;height:34px;border:none;background:var(--light);cursor:pointer;font-size:1.1rem;font-weight:600;color:var(--dark);transition:background .2s;display:flex;align-items:center;justify-content:center;}
+.qty-btn:hover{background:var(--border);}
+.qty-num{width:44px;height:34px;border:none;border-left:1.5px solid var(--border);border-right:1.5px solid var(--border);text-align:center;font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:600;color:var(--dark);background:white;outline:none;}
+
+.modal-btns{display:flex;gap:10px;}
+.modal-add-cart{flex:1;background:var(--orange);color:white;border:none;padding:14px;font-family:'Montserrat',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:2px;transition:background .25s;}
+.modal-add-cart:hover{background:var(--blue);}
+.modal-add-cart.in-cart{background:var(--green);}
+.modal-wish-btn{width:48px;background:white;border:1.5px solid var(--border);border-radius:2px;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.modal-wish-btn:hover{border-color:var(--orange);}
+
+/* ── CART DRAWER ── */
+.cart-drawer{position:fixed;top:0;right:-420px;width:420px;height:100vh;background:white;z-index:600;box-shadow:-8px 0 40px rgba(0,0,0,.15);transition:right .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;}
+.cart-drawer.open{right:0;}
+.cart-overlay{position:fixed;inset:0;background:rgba(14,17,23,.5);z-index:590;opacity:0;pointer-events:none;transition:opacity .3s;}
+.cart-overlay.show{opacity:1;pointer-events:all;}
+.cart-header{display:flex;align-items:center;justify-content:space-between;padding:24px 28px;border-bottom:1px solid var(--border);}
+.cart-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;}
+.cart-close{background:none;border:none;font-size:1.3rem;cursor:pointer;color:#666;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s;}
+.cart-close:hover{background:var(--light);}
+.cart-items{flex:1;overflow-y:auto;padding:20px 28px;}
+.cart-empty{text-align:center;padding:60px 20px;color:#bbb;}
+.cart-empty-icon{font-size:3.5rem;margin-bottom:16px;}
+.cart-empty p{font-size:.8rem;font-weight:300;}
+.cart-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);}
+.cart-item:last-child{border-bottom:none;}
+.ci-img{width:72px;height:72px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;flex-shrink:0;}
+.ci-info{flex:1;}
+.ci-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;margin-bottom:3px;}
+.ci-meta{font-size:.62rem;color:#aaa;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
+.ci-row{display:flex;align-items:center;justify-content:space-between;}
+.ci-price{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--blue);}
+.ci-qty{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:2px;overflow:hidden;}
+.ci-qty-btn{width:26px;height:26px;border:none;background:var(--light);cursor:pointer;font-size:.9rem;font-weight:600;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.ci-qty-btn:hover{background:var(--border);}
+.ci-qty-num{width:30px;height:26px;border:none;border-left:1.5px solid var(--border);border-right:1.5px solid var(--border);text-align:center;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:600;background:white;outline:none;}
+.ci-remove{background:none;border:none;color:#ccc;cursor:pointer;font-size:.9rem;padding:4px;transition:color .2s;}
+.ci-remove:hover{color:var(--red);}
+.cart-footer{padding:20px 28px;border-top:1px solid var(--border);}
+.cart-summary{margin-bottom:16px;}
+.cart-row{display:flex;justify-content:space-between;font-size:.78rem;color:#666;margin-bottom:8px;}
+.cart-row.total{font-size:.95rem;color:var(--dark);font-weight:600;padding-top:10px;border-top:1px solid var(--border);}
+.cart-row.total span:last-child{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--blue);}
+.checkout-btn{width:100%;background:var(--orange);color:white;border:none;padding:16px;font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:2px;transition:background .25s;margin-bottom:8px;}
+.checkout-btn:hover{background:var(--blue);}
+.continue-btn{width:100%;background:white;color:var(--dark);border:1.5px solid var(--border);padding:12px;font-family:'Montserrat',sans-serif;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:2px;transition:all .25s;}
+.continue-btn:hover{border-color:var(--dark);}
+
+/* ── PAYMENT OVERLAY ── */
+.payment-overlay{position:fixed;inset:0;z-index:700;background:rgba(14,17,23,.8);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;}
+.payment-overlay.open{opacity:1;pointer-events:all;}
+.payment-modal{background:white;width:94%;max-width:720px;border-radius:6px;overflow:hidden;max-height:94vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform .3s;}
+.payment-overlay.open .payment-modal{transform:translateY(0);}
+.payment-close{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;background:var(--light);border:none;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:2;}
+.payment-close:hover{background:var(--border);}
+.payment-header{background:linear-gradient(135deg,#0e1117,#1a3a6b);padding:28px 36px;color:white;}
+.payment-header h2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;margin-bottom:4px;}
+.payment-header p{font-size:.72rem;color:rgba(255,255,255,.5);letter-spacing:.1em;}
+.payment-steps{display:flex;padding:0 36px;border-bottom:1px solid var(--border);background:var(--light);}
+.pstep{padding:14px 0;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;color:#bbb;border-bottom:2.5px solid transparent;margin-right:28px;cursor:pointer;transition:all .25s;}
+.pstep.active{color:var(--orange);border-bottom-color:var(--orange);}
+.pstep.done{color:var(--green);}
+.payment-body{padding:32px 36px;}
+.payment-section{display:none;}
+.payment-section.active{display:block;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.form-row.single{grid-template-columns:1fr;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group label{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#888;font-weight:600;}
+.form-input{border:1.5px solid var(--border);padding:12px 16px;font-family:'Montserrat',sans-serif;font-size:.8rem;color:var(--dark);border-radius:2px;outline:none;transition:border-color .25s;}
+.form-input:focus{border-color:var(--blue);}
+.form-select{border:1.5px solid var(--border);padding:12px 16px;font-family:'Montserrat',sans-serif;font-size:.8rem;color:var(--dark);border-radius:2px;outline:none;background:white;cursor:pointer;}
+.payment-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
+.pay-method{border:1.5px solid var(--border);border-radius:3px;padding:16px;text-align:center;cursor:pointer;transition:all .25s;}
+.pay-method:hover,.pay-method.active{border-color:var(--blue);background:#f0f6ff;}
+.pay-method-icon{font-size:1.8rem;margin-bottom:6px;}
+.pay-method-name{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#555;}
+.pay-method.active .pay-method-name{color:var(--blue);}
+.card-fields{background:var(--light);border-radius:3px;padding:20px;margin-bottom:20px;}
+.upi-field{margin-bottom:20px;}
+.order-summary-box{background:var(--light);border-radius:4px;padding:20px;margin-bottom:24px;}
+.osb-title{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:#888;font-weight:600;margin-bottom:14px;}
+.osb-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:.78rem;}
+.osb-item-name{color:#444;font-weight:300;}
+.osb-item-price{font-weight:600;color:var(--dark);}
+.osb-divider{border:none;border-top:1px solid var(--border);margin:12px 0;}
+.osb-total{display:flex;justify-content:space-between;align-items:center;font-weight:600;}
+.osb-total-label{font-size:.8rem;}
+.osb-total-price{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--blue);}
+.payment-nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px;padding-top:20px;border-top:1px solid var(--border);}
+.pnav-back{background:white;color:var(--dark);border:1.5px solid var(--border);padding:13px 28px;font-family:'Montserrat',sans-serif;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:2px;transition:all .25s;}
+.pnav-back:hover{border-color:var(--dark);}
+.pnav-next{background:var(--orange);color:white;border:none;padding:13px 36px;font-family:'Montserrat',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:2px;transition:background .25s;}
+.pnav-next:hover{background:var(--blue);}
+.secure-badge{font-size:.65rem;color:#aaa;display:flex;align-items:center;gap:5px;}
+
+/* SUCCESS */
+.success-screen{text-align:center;padding:48px 20px;}
+.success-icon{font-size:4rem;margin-bottom:20px;animation:pop .5s ease;}
+@keyframes pop{0%{transform:scale(0)}80%{transform:scale(1.15)}100%{transform:scale(1)}}
+.success-title{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;margin-bottom:10px;color:var(--dark);}
+.success-sub{font-size:.8rem;color:#888;font-weight:300;margin-bottom:28px;line-height:1.7;}
+.success-order-id{background:var(--light);border-radius:3px;padding:14px 28px;display:inline-block;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:#555;font-weight:500;margin-bottom:32px;}
+.success-order-id strong{color:var(--orange);}
+.success-btn{background:var(--blue);color:white;border:none;padding:14px 36px;font-family:'Montserrat',sans-serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:2px;transition:background .25s;}
+.success-btn:hover{background:var(--orange);}
+
+/* NO RESULTS */
+.no-results{grid-column:1/-1;text-align:center;padding:70px 20px;display:none;}
+.no-results.show{display:block;}
+.no-results h3{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:#ccc;margin-bottom:10px;}
+.no-results p{font-size:.78rem;color:#aaa;}
+
+/* FOOTER */
+footer{background:var(--dark);padding:26px 8%;display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-size:.7rem;color:rgba(255,255,255,.3);font-weight:300;}
+.footer-link{color:var(--orange);text-decoration:none;font-size:.7rem;font-weight:500;}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--dark);color:white;padding:12px 24px;border-radius:2px;font-size:.72rem;letter-spacing:.1em;z-index:900;transition:transform .35s;white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast .t-icon{color:var(--orange);margin-right:8px;}
+
+@media(max-width:1100px){.products-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:1024px){.main-layout{grid-template-columns:1fr;}.sidebar{position:static;height:auto;width:100%;border-right:none;border-bottom:1px solid var(--border);display:grid;grid-template-columns:repeat(2,1fr);gap:16px;overflow-x:hidden;}}
+@media(max-width:640px){.main-layout{grid-template-columns:1fr;}.sidebar{display:block;}.products-grid{grid-template-columns:1fr;}.detail-modal{grid-template-columns:1fr;}.modal-img{min-height:180px;}.cart-drawer{width:100%;right:-100%;}.nav-links{display:none;}.payment-methods{grid-template-columns:1fr 1fr;}.form-row{grid-template-columns:1fr;}}
+
+/* ── FEATURE 1: FLASH SALE BANNER ── */
+.flash-banner{background:linear-gradient(90deg,var(--dark) 0%,#1a3a6b 50%,var(--dark) 100%);padding:10px 5%;display:flex;align-items:center;justify-content:center;gap:20px;position:relative;z-index:400;flex-wrap:wrap;}
+.flash-text{color:white;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;font-weight:500;}
+.flash-text strong{color:var(--orange);}
+.flash-badge{background:var(--orange);color:white;padding:4px 12px;border-radius:20px;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;animation:pulse-badge 1.5s ease-in-out infinite;}
+@keyframes pulse-badge{0%,100%{opacity:1}50%{opacity:.7}}
+.flash-countdown{display:flex;gap:8px;align-items:center;}
+.cd-unit{background:var(--orange);color:white;border-radius:3px;padding:4px 8px;text-align:center;min-width:38px;}
+.cd-num{font-size:.9rem;font-weight:700;line-height:1;display:block;}
+.cd-lbl{font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85;}
+.cd-sep{color:var(--orange);font-weight:700;font-size:1rem;}
+.flash-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:1rem;padding:4px;transition:color .2s;}
+.flash-close:hover{color:white;}
+
+/* ── FEATURE 2: STAR RATINGS ── */
+.card-stars{display:flex;align-items:center;gap:5px;margin-bottom:6px;}
+.stars{color:#f4b942;font-size:.8rem;letter-spacing:1px;}
+.star-count{font-size:.65rem;color:#aaa;}
+.modal-stars{display:flex;align-items:center;gap:7px;margin-bottom:14px;}
+.modal-stars .stars{font-size:1rem;}
+.modal-stars .star-count{font-size:.75rem;color:#aaa;}
+
+/* ── FEATURE 3: SIZE GUIDE ── */
+.size-guide-link{display:inline-flex;align-items:center;gap:5px;font-size:.6rem;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;font-weight:600;cursor:pointer;border:none;background:none;margin-bottom:10px;padding:0;transition:color .2s;font-family:'Montserrat',sans-serif;}
+.size-guide-link:hover{color:var(--orange);}
+.sg-overlay{position:fixed;inset:0;z-index:800;background:rgba(14,17,23,.78);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;}
+.sg-overlay.open{opacity:1;pointer-events:all;}
+.sg-modal{background:white;width:94%;max-width:580px;border-radius:6px;overflow:hidden;max-height:90vh;overflow-y:auto;transform:translateY(20px);transition:transform .3s;}
+.sg-overlay.open .sg-modal{transform:translateY(0);}
+.sg-header{background:linear-gradient(135deg,#0e1117,#1a3a6b);padding:24px 28px;color:white;display:flex;justify-content:space-between;align-items:center;}
+.sg-header h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;}
+.sg-header p{font-size:.68rem;color:rgba(255,255,255,.5);margin-top:4px;}
+.sg-close{background:rgba(255,255,255,.15);border:none;color:white;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.sg-close:hover{background:rgba(255,255,255,.3);}
+.sg-body{padding:28px;}
+.sg-tip{background:#fff8f0;border-left:3px solid var(--orange);padding:12px 16px;font-size:.75rem;color:#555;line-height:1.6;margin-bottom:22px;border-radius:0 3px 3px 0;}
+.sg-table{width:100%;border-collapse:collapse;font-size:.78rem;}
+.sg-table th{background:var(--dark);color:white;padding:10px 14px;text-align:center;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;}
+.sg-table th:first-child{text-align:left;}
+.sg-table td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:center;color:#444;}
+.sg-table td:first-child{text-align:left;font-weight:600;color:var(--dark);}
+.sg-table tr:hover td{background:#f9f7f5;}
+.sg-table .hl td{background:#fff3ec;}
+.sg-howto{margin-top:22px;}
+.sg-howto h4{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#888;font-weight:600;margin-bottom:12px;}
+.sg-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.sg-item{background:var(--light);border-radius:3px;padding:12px 14px;}
+.sg-item .ic{font-size:1.3rem;margin-bottom:6px;}
+.sg-item strong{color:var(--dark);font-size:.72rem;display:block;margin-bottom:3px;}
+.sg-item p{font-size:.72rem;color:#555;line-height:1.5;}
+
+/* ── FEATURE 4: COUPON CODE ── */
+.coupon-row{display:flex;gap:8px;margin-bottom:10px;padding:14px;background:var(--light);border-radius:3px;border:1px dashed var(--border);}
+.coupon-input{flex:1;border:1.5px solid var(--border);padding:10px 14px;font-family:'Montserrat',sans-serif;font-size:.78rem;color:var(--dark);border-radius:2px;outline:none;text-transform:uppercase;letter-spacing:.1em;transition:border-color .25s;background:white;}
+.coupon-input:focus{border-color:var(--blue);}
+.coupon-apply{background:var(--blue);color:white;border:none;padding:10px 16px;font-family:'Montserrat',sans-serif;font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:2px;transition:background .25s;white-space:nowrap;}
+.coupon-apply:hover{background:var(--orange);}
+.coupon-msg{font-size:.7rem;margin-bottom:8px;display:none;}
+.coupon-msg.ok{color:var(--green);display:block;}
+.coupon-msg.err{color:var(--red);display:block;}
+.discount-row{display:flex;justify-content:space-between;font-size:.78rem;color:var(--green);margin-bottom:7px;font-weight:600;display:none;}
+
+/* ── FEATURE 5: WHATSAPP BUTTON ── */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:500;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
+.wa-tip{background:var(--dark);color:white;padding:8px 14px;border-radius:3px;font-size:.68rem;white-space:nowrap;opacity:0;transform:translateX(10px);transition:all .25s;pointer-events:none;}
+.wa-float:hover .wa-tip{opacity:1;transform:translateX(0);}
+.wa-btn{width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);text-decoration:none;transition:transform .25s,box-shadow .25s;animation:wa-pulse 3s ease-in-out infinite;}
+.wa-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.55);animation:none;}
+.wa-btn svg{width:30px;height:30px;fill:white;}
+@keyframes wa-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+</style>
+</head>
+<body>
+
+<!-- FLASH SALE BANNER -->
+<div class="flash-banner" id="flash-banner">
+  <span class="flash-badge">🔥 Flash Sale</span>
+  <span class="flash-text">Use code <strong>KCPRIDE10</strong> for 10% off · Sale ends in:</span>
+  <div class="flash-countdown">
+    <div class="cd-unit"><span class="cd-num" id="cd-h">08</span><span class="cd-lbl">hrs</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cd-unit"><span class="cd-num" id="cd-m">45</span><span class="cd-lbl">min</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cd-unit"><span class="cd-num" id="cd-s">00</span><span class="cd-lbl">sec</span></div>
+  </div>
+  <button class="flash-close" onclick="document.getElementById('flash-banner').style.display='none'">✕</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="kc-pride.html" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <text x="8" y="72" font-family="Georgia,serif" font-size="68" font-weight="bold" fill="#2563b0">K</text>
+      <text x="48" y="72" font-family="Georgia,serif" font-size="68" font-weight="bold" fill="#e05a22">C</text>
+      <path d="M5,78 Q50,58 95,68" stroke="#2563b0" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M10,82 Q55,64 95,72" stroke="#e05a22" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+    <div class="brand-name">KC <span>Pride</span></div>
+  </a>
+ <ul class="nav-links">
+  <li><a href="kc-pride.html">Home</a></li>
+  <li><a href="#" class="active">Collection</a></li>
+  <li><a href="kc-pride-wholesale (1).html">Wholesale</a></li>
+  <li><a href="kc-pride.html#about">About</a></li>
+  <li><a href="kc-pride.html#contact">Contact</a></li>
+</ul>
+  <div class="nav-right">
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Cart
+      <span class="cart-badge" id="cart-badge">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="collection-hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">KC Pride · Formal Shirts</p>
+    <h1 class="hero-title">Our <em>Full Collection</em></h1>
+    <p class="hero-subtitle">Browse · Add to Cart · Checkout Securely</p>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All Shirts <span class="filter-count">9</span></button>
+  <button class="filter-btn" data-filter="slim">Slim Fit <span class="filter-count">3</span></button>
+  <button class="filter-btn" data-filter="regular">Regular Fit <span class="filter-count">3</span></button>
+  <button class="filter-btn" data-filter="relaxed">Relaxed Fit <span class="filter-count">3</span></button>
+  <button class="filter-btn" data-filter="new">New Arrivals</button>
+  <button class="filter-btn" data-filter="sale">On Sale</button>
+</div>
+
+<!-- MAIN -->
+<div class="main-layout">
+<aside class="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">Occasion</div>
+    <div class="sidebar-options">
+      <div class="sidebar-option checked" onclick="toggleCheck(this)"><div class="custom-check"></div><label>Office / Corporate</label></div>
+      <div class="sidebar-option checked" onclick="toggleCheck(this)"><div class="custom-check"></div><label>Weddings & Events</label></div>
+      <div class="sidebar-option" onclick="toggleCheck(this)"><div class="custom-check"></div><label>Casual Friday</label></div>
+      <div class="sidebar-option" onclick="toggleCheck(this)"><div class="custom-check"></div><label>Evening / Gala</label></div>
+    </div>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-title">Price Range</div>
+    <div class="price-range">
+      <input type="range" class="range-input" min="500" max="3000" value="2000" oninput="updatePrice(this)">
+      <div class="range-labels"><span>₹500</span><span id="price-val">Up to ₹2,000</span></div>
+    </div>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-title">Collar Style</div>
+    <div class="sidebar-options">
+      <div class="sidebar-option checked" onclick="toggleCheck(this)"><div class="custom-check"></div><label>Classic Spread</label></div>
+      <div class="sidebar-option" onclick="toggleCheck(this)"><div class="custom-check"></div><label>Button Down</label></div>
+      <div class="sidebar-option" onclick="toggleCheck(this)"><div class="custom-check"></div><label>Mandarin</label></div>
+      <div class="sidebar-option" onclick="toggleCheck(this)"><div class="custom-check"></div><label>Point Collar</label></div>
+    </div>
+  </div><!-- end collar section -->
+
+  <div class="sidebar-section" style="border-top:1px solid var(--border);padding-top:16px;margin-top:4px;">
+    <button class="filter-apply-btn" onclick="applyAllFilters()">🔍 Apply Filters</button>
+    <button class="filter-reset-btn" onclick="resetFilters()">↺ Reset All</button>
+  </div>
+
+</aside><!-- end sidebar -->
+
+  <div class="product-area">
+    <div class="area-header">
+      <p class="result-count">Showing <strong id="visible-count">9</strong> shirts</p>
+      <select class="sort-select" onchange="sortProducts(this.value)">
+        <option value="default">Sort: Featured</option>
+        <option value="price-low">Price: Low to High</option>
+        <option value="price-high">Price: High to Low</option>
+        <option value="name">Name: A–Z</option>
+      </select>
+    </div>
+    <div class="products-grid" id="products-grid"></div>
+    <div class="no-results" id="no-results"><h3>No shirts found</h3><p>Try a different filter.</p></div>
+    <div class="pagination" id="pagination">
+      <button class="page-nav disabled" id="prev-btn" onclick="changePage(-1)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> Prev
+      </button>
+      <div id="page-numbers"></div>
+      <button class="page-nav" id="next-btn" onclick="changePage(1)">
+        Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT DETAIL OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeOverlay(event)">
+  <div class="detail-modal" id="detail-modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <button class="modal-nav-btn modal-prev" onclick="modalNav(-1)">‹</button>
+    <button class="modal-nav-btn modal-next" onclick="modalNav(1)">›</button>
+    <div class="modal-img" id="modal-img"></div>
+    <div class="modal-info">
+      <p class="modal-eyebrow" id="modal-eyebrow"></p>
+      <h2 class="modal-name" id="modal-name"></h2>
+      <div class="modal-price" id="modal-price"></div>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-attrs" id="modal-attrs"></div>
+      <div class="size-picker">
+        <p class="size-label">Select Size</p>
+        <div class="size-options" id="size-options"></div>
+      </div>
+      <div class="qty-row">
+        <span class="qty-label">Quantity</span>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeModalQty(-1)">−</button>
+          <input class="qty-num" id="modal-qty" type="number" value="1" min="1" max="10" readonly>
+          <button class="qty-btn" onclick="changeModalQty(1)">+</button>
+        </div>
+      </div>
+      <div class="modal-btns">
+        <button class="modal-add-cart" id="modal-add-cart-btn" onclick="addToCartFromModal()">🛒 Add to Cart</button>
+        <button class="modal-wish-btn" id="modal-wish" onclick="toggleWish()">🤍</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-header">
+    <h2 class="cart-title">Your Cart</h2>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-footer" id="cart-footer" style="display:none;">
+    <div class="coupon-row">
+      <input class="coupon-input" id="coupon-input" placeholder="Enter promo code" maxlength="20">
+      <button class="coupon-apply" onclick="applyCoupon()">Apply</button>
+    </div>
+    <div class="coupon-msg" id="coupon-msg"></div>
+    <div class="cart-summary">
+      <div class="cart-row"><span>Subtotal</span><span id="cart-subtotal">₹0</span></div>
+      <div class="discount-row" id="discount-row"><span id="discount-label">Discount</span><span id="discount-val">-₹0</span></div>
+      <div class="cart-row"><span>Delivery</span><span id="cart-delivery">FREE</span></div>
+      <div class="cart-row total"><span>Total</span><span id="cart-total">₹0</span></div>
+    </div>
+    <button class="checkout-btn" onclick="openPayment()">Proceed to Checkout →</button>
+    <button class="continue-btn" onclick="closeCart()">Continue Shopping</button>
+  </div>
+</div>
+
+<!-- PAYMENT OVERLAY -->
+<div class="payment-overlay" id="payment-overlay">
+  <div class="payment-modal">
+    <button class="payment-close" onclick="closePayment()">✕</button>
+    <div class="payment-header">
+      <h2>Secure Checkout</h2>
+      <p>KC Pride · Encrypted & Safe Payment</p>
+    </div>
+    <div class="payment-steps">
+      <div class="pstep active" id="pstep-1">1. Delivery</div>
+      <div class="pstep" id="pstep-2">2. Payment</div>
+      <div class="pstep" id="pstep-3">3. Review</div>
+    </div>
+    <div class="payment-body">
+
+      <!-- STEP 1: DELIVERY -->
+      <div class="payment-section active" id="psec-1">
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input class="form-input" id="fname" placeholder="Arjun"></div>
+          <div class="form-group"><label>Last Name</label><input class="form-input" id="lname" placeholder="Kumar"></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Email Address</label><input class="form-input" id="email" type="email" placeholder="arjun@example.com"></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Phone Number</label><input class="form-input" id="phone" placeholder="+91 98765 43210"></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Delivery Address</label><input class="form-input" id="address" placeholder="House No, Street, Area"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>City</label><input class="form-input" id="city" placeholder="Chennai"></div>
+          <div class="form-group"><label>Pincode</label><input class="form-input" id="pincode" placeholder="600001"></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>State</label>
+            <select class="form-select form-input" id="state">
+              <option>Tamil Nadu</option><option>Karnataka</option><option>Kerala</option><option>Andhra Pradesh</option><option>Telangana</option><option>Maharashtra</option><option>Delhi</option><option>Gujarat</option><option>Rajasthan</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="payment-nav">
+          <div class="secure-badge">🔒 256-bit SSL Encryption</div>
+          <button class="pnav-next" onclick="goStep(2)">Continue to Payment →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: PAYMENT -->
+      <div class="payment-section" id="psec-2">
+        <p style="font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:#888;font-weight:600;margin-bottom:16px;">Select Payment Method</p>
+        <div class="payment-methods">
+          <div class="pay-method active" onclick="selectPayMethod(this,'card')">
+            <div class="pay-method-icon">💳</div>
+            <div class="pay-method-name">Card</div>
+          </div>
+          <div class="pay-method" onclick="selectPayMethod(this,'upi')">
+            <div class="pay-method-icon">📱</div>
+            <div class="pay-method-name">UPI</div>
+          </div>
+          <div class="pay-method" onclick="selectPayMethod(this,'cod')">
+            <div class="pay-method-icon">💵</div>
+            <div class="pay-method-name">Cash on Delivery</div>
+          </div>
+        </div>
+
+        <!-- Card fields -->
+        <div class="card-fields" id="card-fields">
+          <div class="form-row single" style="margin-bottom:14px;">
+            <div class="form-group"><label>Card Number</label><input class="form-input" id="card-num" placeholder="1234  5678  9012  3456" maxlength="19" oninput="formatCard(this)"></div>
+          </div>
+          <div class="form-row" style="margin-bottom:0;">
+            <div class="form-group"><label>Expiry (MM/YY)</label><input class="form-input" id="card-exp" placeholder="08/27" maxlength="5" oninput="formatExpiry(this)"></div>
+            <div class="form-group"><label>CVV</label><input class="form-input" id="card-cvv" placeholder="•••" maxlength="3" type="password"></div>
+          </div>
+        </div>
+
+        <!-- UPI field -->
+        <div class="upi-field" id="upi-field" style="display:none;">
+          <div class="form-group"><label>UPI ID</label><input class="form-input" placeholder="yourname@upi"></div>
+          <p style="font-size:.7rem;color:#aaa;margin-top:8px;">e.g. phonepay, googlepay, paytm UPI ID</p>
+        </div>
+
+        <!-- COD notice -->
+        <div id="cod-notice" style="display:none;background:var(--light);border-radius:3px;padding:18px;font-size:.78rem;color:#555;line-height:1.7;">
+          ✅ <strong>Cash on Delivery</strong> available.<br>Pay ₹<span id="cod-amount">0</span> in cash when your order arrives. No extra charge.
+        </div>
+
+        <div class="payment-nav">
+          <button class="pnav-back" onclick="goStep(1)">← Back</button>
+          <button class="pnav-next" onclick="goStep(3)">Review Order →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: REVIEW -->
+      <div class="payment-section" id="psec-3">
+        <div class="order-summary-box">
+          <div class="osb-title">Order Summary</div>
+          <div id="osb-items"></div>
+          <hr class="osb-divider">
+          <div class="osb-total">
+            <span class="osb-total-label">Total</span>
+            <span class="osb-total-price" id="osb-total">₹0</span>
+          </div>
+        </div>
+        <div style="background:var(--light);border-radius:3px;padding:18px;margin-bottom:20px;font-size:.78rem;line-height:1.8;color:#555;">
+          <strong style="font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:#888;">Delivery To</strong><br>
+          <span id="review-address">—</span>
+        </div>
+        <div style="background:var(--light);border-radius:3px;padding:18px;margin-bottom:4px;font-size:.78rem;color:#555;">
+          <strong style="font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:#888;">Payment</strong><br>
+          <span id="review-payment">—</span>
+        </div>
+        <div class="payment-nav">
+          <button class="pnav-back" onclick="goStep(2)">← Back</button>
+          <button class="pnav-next" style="background:var(--green);" onclick="placeOrder()">✅ Place Order</button>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="payment-section" id="psec-success">
+        <div class="success-screen">
+          <div class="success-icon">🎉</div>
+          <h2 class="success-title">Order Placed!</h2>
+          <p class="success-sub">Thank you for shopping with KC Pride.<br>Your shirts are being prepared with care.<br>You'll receive a confirmation shortly.</p>
+          <div class="success-order-id">Order ID: <strong id="order-id">—</strong></div><br>
+          <button class="success-btn" onclick="closePayment();closeCart();">Continue Shopping</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SIZE GUIDE OVERLAY -->
+<div class="sg-overlay" id="sg-overlay" onclick="closeSGOutside(event)">
+  <div class="sg-modal">
+    <div class="sg-header">
+      <div><h3>Size Guide</h3><p>Measurements in inches · Find your perfect fit</p></div>
+      <button class="sg-close" onclick="closeSG()">✕</button>
+    </div>
+    <div class="sg-body">
+      <div class="sg-tip">💡 <strong>Tip:</strong> Measure your chest, shoulders and length while wearing a well-fitted shirt. If between sizes, size up for a comfortable formal fit.</div>
+      <table class="sg-table">
+        <thead><tr><th>Size</th><th>Chest (in)</th><th>Shoulder (in)</th><th>Length (in)</th><th>Sleeve (in)</th></tr></thead>
+        <tbody>
+          <tr><td>S</td><td>36–38</td><td>16.5</td><td>28</td><td>24</td></tr>
+          <tr><td>M</td><td>38–40</td><td>17</td><td>28.5</td><td>24.5</td></tr>
+          <tr class="hl"><td>L</td><td>40–42</td><td>17.5</td><td>29</td><td>25</td></tr>
+          <tr><td>XL</td><td>42–44</td><td>18</td><td>29.5</td><td>25.5</td></tr>
+          <tr><td>XXL</td><td>44–46</td><td>18.5</td><td>30</td><td>26</td></tr>
+        </tbody>
+      </table>
+      <div class="sg-howto">
+        <h4>How to measure</h4>
+        <div class="sg-grid">
+          <div class="sg-item"><div class="ic">📏</div><strong>Chest</strong><p>Measure around the fullest part of your chest, keeping tape horizontal.</p></div>
+          <div class="sg-item"><div class="ic">↔️</div><strong>Shoulder</strong><p>Measure from shoulder seam to shoulder seam across the back.</p></div>
+          <div class="sg-item"><div class="ic">↕️</div><strong>Length</strong><p>Measure from center back neck to where you want the shirt to end.</p></div>
+          <div class="sg-item"><div class="ic">💪</div><strong>Sleeve</strong><p>From shoulder seam to wrist bone with arm slightly bent.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<div class="wa-float">
+  <div class="wa-tip">💬 Chat with us on WhatsApp</div>
+  <a class="wa-btn" href="https://wa.me/919042883202s?text=Hi%20KC%20Pride!%20I%27m%20interested%20in%20your%20formal%20shirts." target="_blank" title="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span class="t-icon">✓</span><span id="toast-msg">Added to cart</span></div>
+
+<footer>
+  <p class="footer-copy">© 2025 KC Pride · Premium Formal Shirts</p>
+  <a href="kc-pride.html" class="footer-link">← Return to Home</a>
+</footer>
+
+<script>
+// ══════════════════════════════════════════════���═════════════════
+// LOCALSTORAGE HELPER FUNCTIONS
+// ════════════════════════════════════════════════════════════════
+function saveCart() {
+  localStorage.setItem('kcpride_cart', JSON.stringify(cart));
+  console.log('Cart saved:', cart);
+}
+
+function loadCart() {
+  try {
+    const data = localStorage.getItem('kcpride_cart');
+    if (data) {
+      cart = JSON.parse(data);
+      console.log('Cart loaded from storage:', cart);
+    } else {
+      cart = [];
+    }
+  } catch (e) { 
+    console.error('Error loading cart:', e);
+    cart = []; 
+  }
+}
+
+window.addEventListener('storage', (e) => {
+  if (e.key === 'kcpride_cart') {
+    console.log('Cart updated in another tab');
+    loadCart();
+    updateCartBadge();
+    renderCartDrawer();
+    renderGrid();
+  }
+});
+
+// ════════════════════════════════════════════════════════════════
+// DATA
+// ════════════════════════════════════════════════════════════════
+const ITEMS_PER_PAGE = 6;
+let currentPage = 1;
+let currentFilter = 'all';
+let currentIndex = 0;
+let wishlist = new Set();
+let cart = [];
+let payMethod = 'card';
+
+const allProducts = [
+  {id:1,name:"The Executive",sub:"Slim Fit · Classic Spread",cat:"slim",tag:"best",price:1299,oldPrice:null,img:"img-bg-1",desc:"Our flagship corporate shirt.",fabric:"100% Egyptian Cotton",collar:"Classic Spread",fit:"Slim Fit",care:"Dry Clean / Machine Wash Cold"},
+  {id:2,name:"The Pride Edition",sub:"Slim Fit · Point Collar",cat:"slim",tag:"new",price:1499,oldPrice:null,img:"img-bg-2",desc:"Warm-toned premium fabric.",fabric:"Cotton Blend (80/20)",collar:"Point Collar",fit:"Slim Fit",care:"Machine Wash Cold"},
+  {id:3,name:"The Navy Officer",sub:"Slim Fit · Button Down",cat:"slim",tag:null,price:1350,oldPrice:null,img:"img-bg-7",desc:"Bold navy statement shirt.",fabric:"Premium Cotton",collar:"Button Down",fit:"Slim Fit",care:"Machine Wash Cold"},
+  {id:4,name:"The Boardroom White",sub:"Regular Fit · Spread Collar",cat:"regular",tag:"best",price:1199,oldPrice:null,img:"img-bg-4",desc:"Ultimate crisp white formal shirt.",fabric:"100% Cotton Poplin",collar:"Spread Collar",fit:"Regular Fit",care:"Iron While Damp"},
+  {id:5,name:"The Golden Hour",sub:"Regular Fit · Point Collar",cat:"regular",tag:"new",price:1399,oldPrice:null,img:"img-bg-5",desc:"Ideal for weddings and events.",fabric:"Silk-Cotton Blend",collar:"Point Collar",fit:"Regular Fit",care:"Dry Clean Preferred"},
+  {id:6,name:"The Sage Diplomat",sub:"Regular Fit · Mandarin",cat:"regular",tag:"sale",price:999,oldPrice:1299,img:"img-bg-3",desc:"Sophisticated sage green.",fabric:"Linen-Cotton Mix",collar:"Mandarin",fit:"Regular Fit",care:"Machine Wash Cold"},
+  {id:7,name:"The Evening",sub:"Relaxed Fit · Spread Collar",cat:"relaxed",tag:null,price:1199,oldPrice:null,img:"img-bg-3",desc:"Soft pastel tones.",fabric:"Mercerised Cotton",collar:"Spread Collar",fit:"Relaxed Fit",care:"Machine Wash Cold"},
+  {id:8,name:"The Weekend Formal",sub:"Relaxed Fit · Button Down",cat:"relaxed",tag:"sale",price:899,oldPrice:1099,img:"img-bg-8",desc:"Relaxed with subtle structure.",fabric:"Oxford Cotton",collar:"Button Down",fit:"Relaxed Fit",care:"Machine Wash Warm"},
+  {id:9,name:"The Royale Purple",sub:"Relaxed Fit · Mandarin",cat:"relaxed",tag:"new",price:1549,oldPrice:null,img:"img-bg-6",desc:"Deep plum with mandarin collar.",fabric:"Premium Cotton Blend",collar:"Mandarin",fit:"Relaxed Fit",care:"Dry Clean Preferred"},
+];
+
+let filteredProducts = [...allProducts];
+
+// ════════════════════════════════════════════════════════════════
+// HELPER FUNCTIONS
+// ════════════════════════════════════════════════════════════════
+function getTagHTML(tag){
+  if(!tag) return '';
+  const cls=tag==='new'?'tag-new':tag==='best'?'tag-best':'tag-sale';
+  const lbl=tag==='new'?'New':tag==='best'?'Bestseller':'Sale';
+  return `<span class="card-tag ${cls}">${lbl}</span>`;
+}
+
+function isInCart(id){
+  return cart.some(c=>c.id===id);
+}
+
+function toggleCheck(el){
+  el.classList.toggle('checked');
+}
+
+function toggleSwatch(el){
+  el.classList.toggle('active');
+}
+
+function updatePrice(input){
+  document.getElementById('price-val').textContent=`Up to ₹${parseInt(input.value).toLocaleString()}`;
+}
+
+// ════════════════════════════════════════════════════════════════
+// FILTER LOGIC
+// ════════════════════════════════════════════════════════════════
+function applyFilter(){
+  console.log('Applying filter:', currentFilter);
+  
+  if(currentFilter==='all') {
+    filteredProducts=[...allProducts];
+  } else if(currentFilter==='new') {
+    filteredProducts=allProducts.filter(p=>p.tag==='new');
+  } else if(currentFilter==='sale') {
+    filteredProducts=allProducts.filter(p=>p.tag==='sale');
+  } else {
+    filteredProducts=allProducts.filter(p=>p.cat===currentFilter);
+  }
+  
+  console.log('Filtered products:', filteredProducts);
+  currentPage=1;
+  renderGrid();
+}
+
+function sortProducts(val){
+  if(val==='price-low') filteredProducts.sort((a,b)=>a.price-b.price);
+  else if(val==='price-high') filteredProducts.sort((a,b)=>b.price-a.price);
+  else if(val==='name') filteredProducts.sort((a,b)=>a.name.localeCompare(b.name));
+  else applyFilter();
+  currentPage=1;
+  renderGrid();
+}
+
+// ════════════════════════════════════════════════════════════════
+// GRID RENDERING
+// ════════════════════════════════════════════════════════════════
+function renderGrid(){
+  const grid=document.getElementById('products-grid');
+  const noRes=document.getElementById('no-results');
+  
+  if(!grid) {
+    console.error('products-grid element not found');
+    return;
+  }
+  
+  const start=(currentPage-1)*ITEMS_PER_PAGE;
+  const pageItems=filteredProducts.slice(start,start+ITEMS_PER_PAGE);
+  grid.innerHTML='';
+  
+  if(!filteredProducts.length){
+    noRes.classList.add('show');
+    document.getElementById('visible-count').textContent=0;
+    renderPagination();
+    return;
+  }
+  
+  noRes.classList.remove('show');
+  document.getElementById('visible-count').textContent=filteredProducts.length;
+  
+  pageItems.forEach((p,i)=>{
+    const inCart=isInCart(p.id);
+    const oldP=p.oldPrice?`<span class="old">₹${p.oldPrice}</span>`:'';
+    const heart=wishlist.has(p.id)?'🧡':'🤍';
+    grid.innerHTML+=`
+    <div class="product-card" style="animation-delay:${i*.07}s">
+      <div class="card-img ${p.img}">
+        ${getTagHTML(p.tag)}
+        <button class="card-wish" onclick="toggleWishCard(event,${p.id})" id="wish-${p.id}">${heart}</button>
+        👔
+      </div>
+      <div class="card-body">
+        <h3 class="card-name">${p.name}</h3>
+        <p class="card-sub">${p.sub}</p>
+        <div class="card-price">${oldP}₹${p.price}</div>
+        <div class="card-actions">
+          <button class="card-detail-btn" onclick="openModal(${p.id})">Details</button>
+          <button class="card-cart-btn ${inCart?'in-cart':''}" id="cc-${p.id}" onclick="quickAddToCart(event,${p.id})">${inCart?'✓ In Cart':'🛒 Add to Cart'}</button>
+        </div>
+      </div>
+    </div>`;
+  });
+  renderPagination();
+}
+
+function renderPagination(){
+  const total=Math.ceil(filteredProducts.length/ITEMS_PER_PAGE);
+  const nums=document.getElementById('page-numbers');
+  nums.innerHTML='';
+  for(let i=1;i<=total;i++) nums.innerHTML+=`<button class="page-btn ${i===currentPage?'active':''}" onclick="goToPage(${i})">${i}</button>`;
+  document.getElementById('prev-btn').classList.toggle('disabled',currentPage===1);
+  document.getElementById('next-btn').classList.toggle('disabled',currentPage===total||total===0);
+}
+
+function goToPage(n){
+  currentPage=n;
+  renderGrid();
+  document.querySelector('.product-area').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function changePage(dir){
+  const t=Math.ceil(filteredProducts.length/ITEMS_PER_PAGE);
+  currentPage=Math.min(Math.max(1,currentPage+dir),t);
+  renderGrid();
+  document.querySelector('.product-area').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ════════════════════════════════════════════════════════════════
+// MODAL
+// ════════════════════════════════════════════════════════════════
+function openModal(id){
+  currentIndex=allProducts.findIndex(p=>p.id===id);
+  renderModal();
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function renderModal(){
+  const p=allProducts[currentIndex];
+  document.getElementById('modal-img').className=`modal-img ${p.img}`;
+  document.getElementById('modal-img').innerHTML='👔';
+  document.getElementById('modal-eyebrow').textContent=`KC Pride · ${p.fit}`;
+  document.getElementById('modal-name').textContent=p.name;
+  const oldP=p.oldPrice?`<span class="old-price">₹${p.oldPrice}</span>`:'';
+  document.getElementById('modal-price').innerHTML=`${oldP}₹${p.price}`;
+  document.getElementById('modal-desc').textContent=p.desc;
+  document.getElementById('modal-attrs').innerHTML=`
+    <div class="modal-attr"><div class="modal-attr-label">Fabric</div><div class="modal-attr-val">${p.fabric}</div></div>
+    <div class="modal-attr"><div class="modal-attr-label">Collar</div><div class="modal-attr-val">${p.collar}</div></div>
+    <div class="modal-attr"><div class="modal-attr-label">Fit</div><div class="modal-attr-val">${p.fit}</div></div>
+    <div class="modal-attr"><div class="modal-attr-label">Care</div><div class="modal-attr-val">${p.care}</div></div>`;
+  document.getElementById('size-options').innerHTML=['S','M','L','XL','XXL'].map((s,i)=>`<button class="size-opt ${i===1?'active':''}" onclick="selectSize(this)">${s}</button>`).join('');
+  document.getElementById('modal-qty').value=1;
+  document.getElementById('modal-wish').textContent=wishlist.has(p.id)?'🧡':'🤍';
+  const inCart=isInCart(p.id);
+  const btn=document.getElementById('modal-add-cart-btn');
+  btn.textContent=inCart?'✓ In Cart':'🛒 Add to Cart';
+  btn.className=`modal-add-cart${inCart?' in-cart':''}`;
+}
+
+function modalNav(dir){
+  currentIndex=(currentIndex+dir+allProducts.length)%allProducts.length;
+  renderModal();
+}
+
+function closeModal(){
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function closeOverlay(e){
+  if(e.target===document.getElementById('overlay')) closeModal();
+}
+
+function selectSize(btn){
+  document.querySelectorAll('.size-opt').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function changeModalQty(dir){
+  const input=document.getElementById('modal-qty');
+  const val=Math.min(10,Math.max(1,parseInt(input.value)+dir));
+  input.value=val;
+}
+
+function toggleWish(){
+  const p=allProducts[currentIndex];
+  wishlist.has(p.id)?wishlist.delete(p.id):wishlist.add(p.id);
+  document.getElementById('modal-wish').textContent=wishlist.has(p.id)?'🧡':'🤍';
+  renderGrid();
+}
+
+function toggleWishCard(e,id){
+  e.stopPropagation();
+  wishlist.has(id)?wishlist.delete(id):wishlist.add(id);
+  renderGrid();
+}
+
+// ════════════════════════════════════════════════════════════════
+// CART
+// ════════════════════════════════════════════════════════════════
+function quickAddToCart(e,id){
+  e.stopPropagation();
+  const p=allProducts.find(x=>x.id===id);
+  if(isInCart(id)){openCart();return;}
+  addToCart(p,'M',1);
+  renderGrid();
+}
+
+function addToCartFromModal(){
+  const p=allProducts[currentIndex];
+  if(isInCart(p.id)){openCart();closeModal();return;}
+  const size=document.querySelector('.size-opt.active')?.textContent||'M';
+  const qty=parseInt(document.getElementById('modal-qty').value)||1;
+  addToCart(p,size,qty);
+  renderModal();
+  renderGrid();
+}
+
+function addToCart(p,size,qty){
+  const existing=cart.find(c=>c.id===p.id&&c.size===size);
+  if(existing){existing.qty=Math.min(10,existing.qty+qty);}
+  else{cart.push({id:p.id,name:p.name,img:p.img,price:p.price,size,qty});}
+  saveCart();
+  updateCartBadge();
+  showToast(`"${p.name}" added to cart!`);
+}
+
+function updateCartBadge(){
+  const total=cart.reduce((s,c)=>s+c.qty,0);
+  const badge=document.getElementById('cart-badge');
+  badge.textContent=total;
+  total>0?badge.classList.add('show'):badge.classList.remove('show');
+}
+
+function openCart(){
+  renderCartDrawer();
+  document.getElementById('cart-drawer').classList.add('open');
+  document.getElementById('cart-overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+
+function closeCart(){
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.getElementById('cart-overlay').classList.remove('show');
+  document.body.style.overflow='';
+}
+
+function renderCartDrawer(){
+  const itemsEl=document.getElementById('cart-items');
+  const footerEl=document.getElementById('cart-footer');
+  if(!cart.length){
+    itemsEl.innerHTML=`<div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Your cart is empty.<br>Add some shirts!</p></div>`;
+    footerEl.style.display='none';return;
+  }
+  footerEl.style.display='block';
+  itemsEl.innerHTML=cart.map((c,i)=>`
+    <div class="cart-item">
+      <div class="ci-img ${c.img}">👔</div>
+      <div class="ci-info">
+        <div class="ci-name">${c.name}</div>
+        <div class="ci-meta">Size: ${c.size}</div>
+        <div class="ci-row">
+          <div class="ci-qty">
+            <button class="ci-qty-btn" onclick="changeCartQty(${i},-1)">−</button>
+            <input class="ci-qty-num" value="${c.qty}" readonly>
+            <button class="ci-qty-btn" onclick="changeCartQty(${i},1)">+</button>
+          </div>
+          <span class="ci-price">₹${c.price*c.qty}</span>
+          <button class="ci-remove" onclick="removeFromCart(${i})">🗑</button>
+        </div>
+      </div>
+    </div>`).join('');
+  const subtotal=cart.reduce((s,c)=>s+c.price*c.qty,0);
+  document.getElementById('cart-subtotal').textContent=`₹${subtotal}`;
+  document.getElementById('cart-delivery').textContent=subtotal>=999?'FREE':'₹99';
+  const deliveryCost=subtotal>=999?0:99;
+  document.getElementById('cart-total').textContent=`₹${subtotal+deliveryCost}`;
+}
+
+function changeCartQty(i,dir){
+  cart[i].qty=Math.min(10,Math.max(1,cart[i].qty+dir));
+  saveCart();
+  updateCartBadge();
+  renderCartDrawer();
+  renderGrid();
+}
+
+function removeFromCart(i){
+  cart.splice(i,1);
+  saveCart();
+  updateCartBadge();
+  renderCartDrawer();
+  renderGrid();
+}
+
+// ════════════════════════════════════════════════════════════════
+// PAYMENT
+// ════════════════════════════════════════════════════════════════
+let currentStep=1;
+
+function openPayment(){
+  closeCart();
+  currentStep=1;
+  showStep(1);
+  document.querySelectorAll('.payment-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('psec-1').classList.add('active');
+  document.querySelectorAll('.pstep').forEach(s=>{s.classList.remove('active','done');});
+  document.getElementById('pstep-1').classList.add('active');
+  document.getElementById('payment-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closePayment(){
+  document.getElementById('payment-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function showStep(n){
+  document.querySelectorAll('.payment-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(`psec-${n}`).classList.add('active');
+  document.querySelectorAll('.pstep').forEach((s,i)=>{
+    s.classList.remove('active','done');
+    if(i+1<n) s.classList.add('done');
+    else if(i+1===n) s.classList.add('active');
+  });
+  currentStep=n;
+}
+
+function goStep(n){
+  if(n===2){
+    if(!document.getElementById('fname').value.trim()||!document.getElementById('address').value.trim()||!document.getElementById('phone').value.trim()){
+      showToast('Please fill in all delivery details.');return;
+    }
+  }
+  if(n===3) buildReview();
+  showStep(n);
+}
+
+function selectPayMethod(el,method){
+  document.querySelectorAll('.pay-method').forEach(m=>m.classList.remove('active'));
+  el.classList.add('active');payMethod=method;
+  document.getElementById('card-fields').style.display=method==='card'?'block':'none';
+  document.getElementById('upi-field').style.display=method==='upi'?'block':'none';
+  document.getElementById('cod-notice').style.display=method==='cod'?'block':'none';
+  if(method==='cod'){
+    const tot=cart.reduce((s,c)=>s+c.price*c.qty,0);
+    document.getElementById('cod-amount').textContent=tot>=999?tot:tot+99;
+  }
+}
+
+function buildReview(){
+  const fname=document.getElementById('fname').value;
+  const lname=document.getElementById('lname').value;
+  const addr=document.getElementById('address').value;
+  const city=document.getElementById('city').value;
+  const pin=document.getElementById('pincode').value;
+  const state=document.getElementById('state').value;
+  document.getElementById('review-address').textContent=`${fname} ${lname}, ${addr}, ${city} – ${pin}, ${state}`;
+  const methods={card:'Credit/Debit Card',upi:'UPI Payment',cod:'Cash on Delivery'};
+  document.getElementById('review-payment').textContent=methods[payMethod];
+  const subtotal=cart.reduce((s,c)=>s+c.price*c.qty,0);
+  const delivery=subtotal>=999?0:99;
+  document.getElementById('osb-items').innerHTML=cart.map(c=>`
+    <div class="osb-item">
+      <span class="osb-item-name">👔 ${c.name} (${c.size}) × ${c.qty}</span>
+      <span class="osb-item-price">₹${c.price*c.qty}</span>
+    </div>`).join('')+`<div class="osb-item"><span class="osb-item-name">Delivery</span><span class="osb-item-price">${delivery===0?'FREE':'₹'+delivery}</span></div>`;
+  document.getElementById('osb-total').textContent=`₹${subtotal+delivery}`;
+}
+
+function placeOrder(){
+  if(payMethod==='card'){
+    const num=document.getElementById('card-num').value.replace(/\s/g,'');
+    if(num.length<16){showToast('Please enter a valid card number.');return;}
+  }
+  const orderId='KCP'+Date.now().toString().slice(-6);
+  document.getElementById('order-id').textContent=orderId;
+  document.querySelectorAll('.payment-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('psec-success').classList.add('active');
+  document.querySelectorAll('.pstep').forEach(s=>s.classList.add('done'));
+  cart=[];
+  saveCart();
+  updateCartBadge();
+  renderGrid();
+}
+
+function formatCard(input){
+  let v=input.value.replace(/\D/g,'').slice(0,16);
+  input.value=v.replace(/(.{4})/g,'$1 ').trim();
+}
+
+function formatExpiry(input){
+  let v=input.value.replace(/\D/g,'').slice(0,4);
+  if(v.length>2) v=v.slice(0,2)+'/'+v.slice(2);
+  input.value=v;
+}
+
+let toastTimer;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent=msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+// ════════════════════════════════════════════════════════════════
+// FILTER BUTTON FUNCTIONS
+// ════════════════════════════════════════════════════════════════
+function applyAllFilters() {
+  console.log('🔍 Apply All Filters clicked');
+  applyFilter();
+  showToast('Filters applied!');
+}
+
+function resetFilters() {
+  console.log('↺ Reset Filters clicked');
+  
+  // Reset to all
+  currentFilter = 'all';
+  currentPage = 1;
+  
+  // Update top filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.dataset.filter === 'all') {
+      btn.classList.add('active');
+    }
+  });
+  
+  // Re-render with all products
+  filteredProducts = [...allProducts];
+  renderGrid();
+  
+  showToast('Filters reset!');
+}
+
+// ════════════════════════════════════════════════════════════════
+// INITIALIZATION
+// ════════════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('=== DOM Content Loaded ===');
+  
+  // Load cart
+  loadCart();
+  updateCartBadge();
+  
+  // Render grid FIRST
+  console.log('Initial render...');
+  renderGrid();
+  
+  // Setup TOP filter bar buttons (All Shirts, Slim Fit, etc.)
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  console.log('Found top filter buttons:', filterBtns.length);
+  
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('📌 Top filter button clicked:', this.dataset.filter);
+      
+      // Remove active from all
+      filterBtns.forEach(b => b.classList.remove('active'));
+      
+      // Add active to clicked
+      this.classList.add('active');
+      
+      // Update filter
+      currentFilter = this.dataset.filter;
+      console.log('✓ Current filter:', currentFilter);
+      
+      // Apply immediately
+      applyFilter();
+    });
+  });
+  
+  console.log('✓ Initialization complete');
+});
+</script>
+</body>
+</html>

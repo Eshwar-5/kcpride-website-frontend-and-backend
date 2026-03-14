@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wholesale & Bulk Orders – KC Pride</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#2563b0;--orange:#e05a22;--dark:#0e1117;--cream:#f5f0eb;--light:#f9f7f5;--border:#e0d8cf;--green:#1a7a44;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Montserrat',sans-serif;background:var(--light);color:var(--dark);overflow-x:hidden;}
+
+nav{position:fixed;top:0;width:100%;z-index:200;background:rgba(255,255,255,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:72px;}
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+.logo-svg{width:46px;height:46px;}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:600;letter-spacing:.08em;color:var(--dark);}
+.brand-name span{color:var(--orange);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{text-decoration:none;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:#555;font-weight:500;transition:color .25s;}
+.nav-links a:hover,.nav-links a.active{color:var(--orange);}
+.nav-quote{background:var(--orange);color:white;padding:10px 20px;border-radius:2px;font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;text-decoration:none;transition:background .25s;}
+.nav-quote:hover{background:var(--blue);}
+
+.hero{margin-top:72px;background:linear-gradient(135deg,#0e1117 0%,#1a3a6b 55%,#2563b0 100%);padding:64px 8% 56px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Crect x='0' y='0' width='30' height='30'/%3E%3Crect x='30' y='30' width='30' height='30'/%3E%3C/g%3E%3C/svg%3E");}
+.hero-inner{position:relative;z-index:2;max-width:700px;}
+.eyebrow{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:12px;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:300;color:white;line-height:1.1;margin-bottom:14px;}
+.hero h1 em{font-style:italic;color:#90b8e8;}
+.hero-sub{color:rgba(255,255,255,.5);font-size:.78rem;font-weight:300;line-height:1.8;margin-bottom:28px;}
+.hero-pills{display:flex;gap:10px;flex-wrap:wrap;}
+.pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.85);padding:7px 16px;border-radius:20px;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;}
+.pill strong{color:var(--orange);}
+
+.form-wrap{padding:64px 8%;display:grid;grid-template-columns:1fr 1.6fr;gap:56px;align-items:start;}
+.sidebar h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:12px;line-height:1.2;}
+.sidebar p{font-size:.76rem;color:#666;line-height:1.8;margin-bottom:28px;}
+.contact-card{display:flex;align-items:center;gap:14px;padding:16px 18px;border:1px solid var(--border);border-radius:3px;text-decoration:none;transition:all .25s;margin-bottom:12px;background:white;}
+.contact-card:hover{border-color:var(--orange);background:#fff8f5;}
+.cc-icon{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.cc-icon.wa{background:#e8f9ef;} .cc-icon.em{background:#e8f0fb;}
+.cc-lbl{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:#aaa;font-weight:600;margin-bottom:3px;}
+.cc-val{font-size:.8rem;font-weight:600;color:var(--dark);}
+.cc-sub{font-size:.63rem;color:#aaa;}
+.tip-box{margin-top:20px;background:var(--light);border-left:3px solid var(--orange);padding:14px 16px;border-radius:0 3px 3px 0;font-size:.72rem;color:#666;line-height:1.7;}
+
+.form-card{background:white;border-radius:6px;border:1px solid var(--border);overflow:hidden;}
+.form-card-header{background:var(--dark);padding:24px 32px;color:white;}
+.form-card-header h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;margin-bottom:4px;}
+.form-card-header p{font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.05em;}
+.form-card-body{padding:32px;}
+
+.steps-bar{display:flex;margin-bottom:32px;border:1px solid var(--border);border-radius:3px;overflow:hidden;}
+.step-tab{flex:1;padding:10px 6px;text-align:center;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:#aaa;background:var(--light);border-right:1px solid var(--border);transition:all .25s;}
+.step-tab:last-child{border-right:none;}
+.step-tab.active{background:var(--dark);color:white;}
+.step-tab.done{background:var(--green);color:white;}
+
+.sec-label{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:#aaa;font-weight:600;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:8px;}
+.prod-opt{border:1.5px solid var(--border);border-radius:3px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .2s;background:white;position:relative;}
+.prod-opt:hover{border-color:var(--blue);}
+.prod-opt.selected{border-color:var(--orange);background:#fff5f0;}
+.prod-check{position:absolute;top:6px;right:7px;width:16px;height:16px;border-radius:50%;background:var(--orange);color:white;font-size:.55rem;display:none;align-items:center;justify-content:center;font-weight:700;}
+.prod-opt.selected .prod-check{display:flex;}
+.prod-icon{font-size:1.5rem;margin-bottom:5px;}
+.prod-name{font-size:.62rem;font-weight:600;color:var(--dark);line-height:1.3;}
+.prod-fit{font-size:.57rem;color:#aaa;margin-top:2px;}
+.sel-count{font-size:.68rem;color:var(--orange);font-weight:600;margin-top:8px;min-height:16px;}
+
+.colour-grid{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:8px;}
+.colour-opt{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;}
+.swatch{width:36px;height:36px;border-radius:50%;border:2.5px solid transparent;transition:all .2s;position:relative;}
+.swatch:hover{transform:scale(1.12);}
+.colour-opt.selected .swatch{border-color:var(--orange);box-shadow:0 0 0 3px rgba(224,90,34,.2);}
+.colour-opt.selected .swatch::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:white;text-shadow:0 1px 3px rgba(0,0,0,.6);}
+.colour-lbl{font-size:.57rem;color:#666;font-weight:500;text-align:center;max-width:50px;line-height:1.3;}
+
+.size-range-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:12px;margin-bottom:10px;}
+.size-arrow{font-size:.85rem;color:#aaa;font-weight:700;text-align:center;padding-bottom:11px;}
+.size-select{border:1.5px solid var(--border);padding:11px 14px;font-family:'Montserrat',sans-serif;font-size:.8rem;color:var(--dark);border-radius:2px;outline:none;transition:border-color .25s;background:white;cursor:pointer;width:100%;}
+.size-select:focus{border-color:var(--blue);}
+.size-preview{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.size-chip{background:var(--dark);color:white;font-size:.6rem;font-weight:600;padding:4px 10px;border-radius:2px;letter-spacing:.08em;}
+
+.qty-input{width:100%;border:1.5px solid var(--border);padding:13px 16px;font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:600;color:var(--dark);border-radius:2px;outline:none;transition:border-color .25s;text-align:center;}
+.qty-input:focus{border-color:var(--blue);}
+.qty-hint{font-size:.68rem;color:#aaa;margin-top:6px;min-height:18px;}
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.form-row.single{grid-template-columns:1fr;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#888;font-weight:600;}
+.form-group label span{color:var(--orange);}
+.f-input,.f-select,.f-textarea{border:1.5px solid var(--border);padding:11px 14px;font-family:'Montserrat',sans-serif;font-size:.8rem;color:var(--dark);border-radius:2px;outline:none;transition:border-color .25s;background:white;width:100%;}
+.f-input:focus,.f-select:focus,.f-textarea:focus{border-color:var(--blue);}
+.f-textarea{resize:vertical;min-height:80px;}
+
+.order-summary{background:var(--light);border-radius:3px;padding:18px 20px;margin-bottom:22px;}
+.os-title{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:#888;font-weight:600;margin-bottom:12px;}
+.os-row{display:flex;justify-content:space-between;align-items:flex-start;font-size:.73rem;margin-bottom:8px;gap:12px;}
+.os-key{color:#888;flex-shrink:0;min-width:100px;}
+.os-val{color:var(--dark);font-weight:600;text-align:right;}
+
+.btn-row{display:flex;justify-content:space-between;align-items:center;margin-top:22px;gap:10px;}
+.btn-back{background:white;color:var(--dark);border:1.5px solid var(--border);padding:11px 22px;font-family:'Montserrat',sans-serif;font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:2px;transition:all .25s;flex-shrink:0;}
+.btn-back:hover{border-color:var(--dark);}
+.btn-next{background:var(--orange);color:white;border:none;padding:12px 28px;font-family:'Montserrat',sans-serif;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:2px;transition:background .25s;}
+.btn-next:hover{background:var(--blue);}
+.btn-submit{width:100%;background:var(--orange);color:white;border:none;padding:15px;font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:2px;transition:background .25s;margin-top:6px;}
+.btn-submit:hover{background:var(--blue);}
+.submit-note{font-size:.65rem;color:#aaa;text-align:center;margin-top:8px;line-height:1.6;}
+
+.success-screen{display:none;text-align:center;padding:48px 24px;}
+.success-screen.show{display:block;}
+.s-icon{font-size:3.5rem;margin-bottom:16px;animation:pop .5s ease;}
+@keyframes pop{0%{transform:scale(0)}80%{transform:scale(1.15)}100%{transform:scale(1)}}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:10px;}
+.s-sub{font-size:.76rem;color:#666;line-height:1.8;margin-bottom:20px;}
+.s-ref{background:var(--light);display:inline-block;padding:8px 20px;border-radius:2px;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:24px;}
+.s-ref strong{color:var(--orange);}
+.s-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.s-btn{padding:12px 24px;font-family:'Montserrat',sans-serif;font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:2px;transition:all .25s;text-decoration:none;display:inline-block;}
+.s-btn.primary{background:var(--green);color:white;border:none;}
+.s-btn.primary:hover{background:var(--blue);}
+.s-btn.sec{background:white;color:var(--dark);border:1.5px solid var(--border);}
+.s-btn.sec:hover{border-color:var(--dark);}
+
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:500;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
+.wa-tip{background:var(--dark);color:white;padding:8px 14px;border-radius:3px;font-size:.68rem;white-space:nowrap;opacity:0;transform:translateX(10px);transition:all .25s;pointer-events:none;}
+.wa-float:hover .wa-tip{opacity:1;transform:translateX(0);}
+.wa-btn{width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);text-decoration:none;animation:wa-pulse 3s ease-in-out infinite;}
+.wa-btn:hover{transform:scale(1.1);animation:none;}
+.wa-btn svg{width:30px;height:30px;fill:white;}
+@keyframes wa-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--dark);color:white;padding:12px 24px;border-radius:2px;font-size:.72rem;z-index:900;transition:transform .35s;white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+footer{background:var(--dark);padding:26px 8%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.f-copy{font-size:.7rem;color:rgba(255,255,255,.3);}
+.f-links{display:flex;gap:20px;}
+.f-links a{color:rgba(255,255,255,.4);text-decoration:none;font-size:.68rem;transition:color .2s;}
+.f-links a:hover{color:var(--orange);}
+
+@media(max-width:1024px){.form-wrap{grid-template-columns:1fr;gap:36px;}}
+@media(max-width:640px){.form-wrap{padding:40px 5%;}.product-grid{grid-template-columns:repeat(2,1fr);}.form-row{grid-template-columns:1fr;}.nav-links{display:none;}.form-card-body{padding:20px;}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="kc-pride.html" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <text x="8" y="72" font-family="Georgia,serif" font-size="68" font-weight="bold" fill="#2563b0">K</text>
+      <text x="48" y="72" font-family="Georgia,serif" font-size="68" font-weight="bold" fill="#e05a22">C</text>
+      <path d="M5,78 Q50,58 95,68" stroke="#2563b0" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M10,82 Q55,64 95,72" stroke="#e05a22" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+    <div class="brand-name">KC <span>Pride</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="kc-pride.html">Home</a></li>
+    <li><a href="kc-pride-collection.html">Collection</a></li>
+    <li><a href="#" class="active">Wholesale</a></li>
+    <li><a href="kc-pride.html#contact">Contact</a></li>
+  </ul>
+  <a href="#order-form" class="nav-quote">Request Bulk Quote →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">KC Pride · Wholesale & Bulk Orders</p>
+    <h1>Order <em>Bulk Shirts</em><br>at Wholesale Prices</h1>
+    <p class="hero-sub">Select your shirts, colours and size range — we'll send a personalised quote to your WhatsApp and Email within 4 hours.</p>
+    <div class="hero-pills">
+      <div class="pill">Min. <strong>12 pieces</strong></div>
+      <div class="pill">All <strong>colours available</strong></div>
+      <div class="pill">PAN India <strong>delivery</strong></div>
+      <div class="pill">GST <strong>invoice</strong> included</div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN LAYOUT -->
+<div class="form-wrap" id="order-form">
+
+  <!-- LEFT SIDEBAR -->
+  <div class="sidebar">
+    <p class="eyebrow" style="color:var(--orange);">Get in Touch</p>
+    <h2>We'll Send You a Custom Quote</h2>
+    <p>Fill the form with your shirt selections, preferred colours and size range. We'll reply on both WhatsApp and Email with exact pricing and delivery timeline.</p>
+    <a class="contact-card" href="https://wa.me/919042883202?text=Hi%20KC%20Pride!%20I%27d%20like%20to%20place%20a%20bulk%20order." target="_blank">
+      <div class="cc-icon wa">💬</div>
+      <div>
+        <div class="cc-lbl">WhatsApp</div>
+        <div class="cc-val">+91 90428 83202</div>
+        <div class="cc-sub">Mon–Sat · 9am–7pm · Fastest reply</div>
+      </div>
+    </a>
+    <a class="contact-card" href="mailto:wholesale@kcpride.in">
+      <div class="cc-icon em">✉️</div>
+      <div>
+        <div class="cc-lbl">Email</div>
+        <div class="cc-val">wholesale@kcpride.in</div>
+        <div class="cc-sub">For detailed quotes and GST invoices</div>
+      </div>
+    </a>
+    <div class="tip-box">
+      💡 <strong>You can mix</strong> different shirt styles, colours and sizes in a single bulk order. Minimum 12 pieces total.
+    </div>
+  </div>
+
+  <!-- FORM CARD -->
+  <div class="form-card">
+    <div class="form-card-header" id="card-header">
+      <h3>Bulk Order Form</h3>
+      <p>Step by step · Takes less than 3 minutes</p>
+    </div>
+    <div class="form-card-body" id="form-body">
+      <!-- STEP TABS -->
+      <div class="steps-bar">
+        <div class="step-tab active" id="stab-1">1. Shirts</div>
+        <div class="step-tab" id="stab-2">2. Colours</div>
+        <div class="step-tab" id="stab-3">3. Sizes & Qty</div>
+        <div class="step-tab" id="stab-4">4. Your Details</div>
+      </div>
+
+      <!-- STEP 1: SHIRTS -->
+      <div id="sec-1">
+        <div class="sec-label">Select shirts you want (can choose multiple)</div>
+        <div class="product-grid">
+          <div class="prod-opt" onclick="toggleProd(this,'The Executive','Slim Fit')">
+            <div class="prod-check">✓</div><div class="prod-icon">👔</div>
+            <div class="prod-name">The Executive</div><div class="prod-fit">Slim Fit</div>
+          </div>
+          <div class="prod-opt" onclick="toggleProd(this,'The Pride Edition','Slim Fit')">
+            <div class="prod-check">✓</div><div class="prod-icon">👔</div>
+            <div class="prod-name">The Pride Edition</div><div class="prod-fit">Slim Fit</div>
+          </div>
+          <div class="prod-opt" onclick="toggleProd(this,'The Navy Officer','Slim Fit')">
+            <div class="prod-check">✓</div><div class="prod-icon">👔</div>
+            <div class="prod-name">The Navy Officer</div><div class="prod-fit">Slim Fit</div>
+          </div>
+          <div class="prod-opt" onclick="toggleProd(this,'The Boardroom White','Regular Fit')">
+            <div class="prod-check">✓</div><div class="prod-icon">👔</div>
+            <div class="prod-name">The Boardroom White</div><div class="prod-fit">Regular Fit</div>
+          </div>
+          <div class="prod-opt" onclick="toggleProd(this,'The Golden Hour','Regular Fit')">
+            <div class="prod-check">✓</div><div class="prod-icon">👔</div>
+            <div class="prod-name">The Golden Hour</div><div class="prod-fit">Regular Fit</div>
+          </div>
+          <div class="prod-opt" onclick="toggleProd(this,'The Sage Diplomat','Regular Fit')">
+            <div class="prod-check">✓</div><div class="prod-icon">👔</div>
+            <div class="prod-name">The Sage Diplomat</div><div class="prod-fit">Regular Fit</div>
+          </div>
+          <div class="prod-opt" onclick="toggleProd(this,'The Evening','Relaxed Fit')">
+            <div class="prod-check">✓</div><div class="prod-icon">👔</div>
+            <div class="prod-name">The Evening</div><div class="prod-fit">Relaxed Fit</div>
+          </div>
+          <div class="prod-opt" onclick="toggleProd(this,'The Weekend Formal','Relaxed Fit')">
+            <div class="prod-check">✓</div><div class="prod-icon">👔</div>
+            <div class="prod-name">The Weekend Formal</div><div class="prod-fit">Relaxed Fit</div>
+          </div>
+          <div class="prod-opt" onclick="toggleProd(this,'The Royale Purple','Relaxed Fit')">
+            <div class="prod-check">✓</div><div class="prod-icon">👔</div>
+            <div class="prod-name">The Royale Purple</div><div class="prod-fit">Relaxed Fit</div>
+          </div>
+        </div>
+        <div class="sel-count" id="prod-count"></div>
+        <div class="btn-row" style="justify-content:flex-end;">
+          <button class="btn-next" onclick="goStep(2)">Next: Choose Colours →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: COLOURS -->
+      <div id="sec-2" style="display:none;">
+        <div class="sec-label">Select all colours you want</div>
+        <div class="colour-grid">
+          <div class="colour-opt" onclick="toggleColour(this,'White')">
+            <div class="swatch" style="background:#FFFFFF;border:1.5px solid #ccc;"></div>
+            <div class="colour-lbl">White</div>
+          </div>
+          <div class="colour-opt" onclick="toggleColour(this,'Light Blue')">
+            <div class="swatch" style="background:#a8c8f0;"></div>
+            <div class="colour-lbl">Light Blue</div>
+          </div>
+          <div class="colour-opt" onclick="toggleColour(this,'Navy Blue')">
+            <div class="swatch" style="background:#1a3a6b;"></div>
+            <div class="colour-lbl">Navy Blue</div>
+          </div>
+          <div class="colour-opt" onclick="toggleColour(this,'Royal Blue')">
+            <div class="swatch" style="background:#2563b0;"></div>
+            <div class="colour-lbl">Royal Blue</div>
+          </div>
+          <div class="colour-opt" onclick="toggleColour(this,'Black')">
+            <div class="swatch" style="background:#1a1a1a;"></div>
+            <div class="colour-lbl">Black</div>
+          </div>
+          <div class="colour-opt" onclick="toggleColour(this,'Charcoal Grey')">
+            <div class="swatch" style="background:#4a4a4a;"></div>
+            <div class="colour-lbl">Charcoal</div>
+          </div>
+          <div class="colour-opt" onclick="toggleColour(this,'Light Grey')">
+            <div class="swatch" style="background:#b8b8b8;border:1px solid #ddd;"></div>
+            <div class="colour-lbl">Light Grey</div>
+          </div>
+          <div class="colour-opt" onclick="toggleColour(this,'Cream / Off-White')">
+            <div class="swatch" style="background:#f5f0eb;border:1.5px solid #ccc;"></div>
+            <div class="colour-lbl">Cream</div>
+          </div>
+          <div class="colour-opt" onclick="toggleColour(this,'Sage Green')">
+            <div class="swatch" style="background:#7a9e7e;"></div>
+            <div class="colour-lbl">Sage Green</div>
+          </div>
+          <div class="colour-opt" onclick="toggleColour(this,'Mint Green')">
+            <div class="swatch" style="background:#a8dfc8;"></div>
+            <div class="colour-lbl">Mint Green</div>
+          </div>
+          <div class="colour-opt" onclick="toggleColour(this,'Maroon')">
+            <div class="swatch" style="background:#7a1a1a;"></div>
+            <div class="colour-lbl">Maroon</div>
+          </div>
+          <div class="colour-opt" onclick="toggleColour(this,'Burgundy')">
+            <div class="swatch" style="background:#5a0e2e;"></div>
+            <div class="colour-lbl">Burgundy</div>
+          </div>
+          <div class="colour-opt" onclick="toggleColour(this,'Lavender')">
+            <div class="swatch" style="background:#c8b0e0;"></div>
+            <div class="colour-lbl">Lavender</div>
+          </div>
+          <div class="colour-opt" onclick="toggleColour(this,'Peach / Champagne')">
+            <div class="swatch" style="background:#f5dea8;border:1px solid #ddd;"></div>
+            <div class="colour-lbl">Peach</div>
+          </div>
+          <div class="colour-opt" onclick="toggleColour(this,'Pink')">
+            <div class="swatch" style="background:#f5b8c8;"></div>
+            <div class="colour-lbl">Pink</div>
+          </div>
+          <div class="colour-opt" onclick="toggleColour(this,'Any / No Preference')">
+            <div class="swatch" style="background:conic-gradient(#2563b0,#e05a22,#1a7a44,#f5dea8,#2563b0);"></div>
+            <div class="colour-lbl">Any / No Pref.</div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="goStep(1)">← Back</button>
+          <button class="btn-next" onclick="goStep(3)">Next: Sizes & Qty →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: SIZES & QTY -->
+      <div id="sec-3" style="display:none;">
+        <div class="sec-label">Size range required</div>
+        <div class="size-range-row">
+          <div class="form-group">
+            <label>From Size</label>
+            <select class="size-select" id="size-from" onchange="updateSizePreview()">
+              <option>S</option><option selected>M</option><option>L</option><option>XL</option><option>XXL</option>
+            </select>
+          </div>
+          <div class="size-arrow">→</div>
+          <div class="form-group">
+            <label>To Size</label>
+            <select class="size-select" id="size-to" onchange="updateSizePreview()">
+              <option>S</option><option>M</option><option>L</option><option selected>XL</option><option>XXL</option>
+            </select>
+          </div>
+        </div>
+        <div class="size-preview" id="size-preview"></div>
+
+        <div class="sec-label" style="margin-top:24px;">Total quantity needed</div>
+        <input type="number" class="qty-input" id="total-qty" min="12" placeholder="e.g. 50" oninput="updateQtyHint()">
+        <div class="qty-hint" id="qty-hint">Minimum 12 pieces per order.</div>
+
+        <div class="form-row single" style="margin-top:18px;">
+          <div class="form-group">
+            <label>Specific size breakdown (optional)</label>
+            <input class="f-input" id="size-note" placeholder="e.g. 10×M, 20×L, 15×XL, 5×XXL">
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="goStep(2)">← Back</button>
+          <button class="btn-next" onclick="goStep(4)">Next: Your Details →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: CUSTOMER DETAILS -->
+      <div id="sec-4" style="display:none;">
+        <div class="order-summary" id="order-summary"></div>
+        <div class="sec-label">Your contact details</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name <span>*</span></label>
+            <input class="f-input" id="f-name" placeholder="Ramesh Kumar">
+          </div>
+          <div class="form-group">
+            <label>Shop / Business Name <span>*</span></label>
+            <input class="f-input" id="f-shop" placeholder="Kumar Garments">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>WhatsApp Number <span>*</span></label>
+            <input class="f-input" id="f-phone" placeholder="+91 98765 43210" type="tel">
+          </div>
+          <div class="form-group">
+            <label>Email Address <span>*</span></label>
+            <input class="f-input" id="f-email" placeholder="ramesh@example.com" type="email">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>City <span>*</span></label>
+            <input class="f-input" id="f-city" placeholder="Chennai">
+          </div>
+          <div class="form-group">
+            <label>State</label>
+            <select class="f-select" id="f-state">
+              <option value="">Select State</option>
+              <option>Tamil Nadu</option><option>Karnataka</option><option>Kerala</option>
+              <option>Andhra Pradesh</option><option>Telangana</option><option>Maharashtra</option>
+              <option>Delhi</option><option>Gujarat</option><option>Rajasthan</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>GST Number (optional)</label>
+            <input class="f-input" id="f-gst" placeholder="22AAAAA0000A1Z5">
+          </div>
+          <div class="form-group">
+            <label>When do you need it?</label>
+            <select class="f-select" id="f-timeline">
+              <option value="">No preference</option>
+              <option>Within 1 week</option><option>Within 2 weeks</option>
+              <option>Within a month</option><option>Flexible</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group">
+            <label>Additional message / special requirements</label>
+            <textarea class="f-textarea" id="f-note" placeholder="e.g. Custom label, logo printing, specific colour combos, delivery address..."></textarea>
+          </div>
+        </div>
+        <button class="btn-submit" onclick="submitOrder()">📩 Send Bulk Order Inquiry →</button>
+        <p class="submit-note">We'll reply on <strong>WhatsApp + Email</strong> within 4 hours · Mon–Sat 9am–7pm</p>
+        <div style="margin-top:14px;">
+          <button class="btn-back" onclick="goStep(3)">← Back</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-screen" id="success-screen">
+      <div class="s-icon">🎉</div>
+      <h3 class="s-title">Inquiry Sent!</h3>
+      <p class="s-sub">Thank you! Our team will contact you on <strong>WhatsApp and Email</strong> within 4 hours with exact pricing and delivery details.</p>
+      <div class="s-ref">Reference: <strong id="ref-id">—</strong></div>
+      <div class="s-actions">
+        <a class="s-btn primary" id="wa-followup" href="#" target="_blank">💬 Follow Up on WhatsApp</a>
+        <a class="s-btn sec" href="kc-pride-collection.html">View Collection</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<div class="wa-float">
+  <div class="wa-tip">💬 Quick bulk query?</div>
+  <a class="wa-btn" href="https://wa.me/919042883202?text=Hi%20KC%20Pride!%20I%27d%20like%20to%20enquire%20about%20a%20bulk%20order." target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
+<div class="toast" id="toast"><span id="toast-msg"></span></div>
+
+<footer>
+  <p class="f-copy">© 2025 KC Pride. All rights reserved.</p>
+  <div class="f-links">
+    <a href="kc-pride.html">Home</a>
+    <a href="kc-pride-collection.html">Collection</a>
+    <a href="kc-pride.html#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+const SIZES = ['S','M','L','XL','XXL'];
+let selectedProds = [];
+let selectedColours = [];
+
+function goStep(n) {
+  if (n === 2 && !selectedProds.length) { showToast('Please select at least one shirt.'); return; }
+  if (n === 3 && !selectedColours.length) { showToast('Please select at least one colour.'); return; }
+  if (n === 4) {
+    const qty = parseInt(document.getElementById('total-qty').value) || 0;
+    if (qty < 12) { showToast('Minimum 12 pieces required.'); return; }
+    const fi = SIZES.indexOf(document.getElementById('size-from').value);
+    const ti = SIZES.indexOf(document.getElementById('size-to').value);
+    if (fi > ti) { showToast('"From" size must be smaller than "To" size.'); return; }
+    buildSummary();
+  }
+  for (let i = 1; i <= 4; i++) {
+    const s = document.getElementById('sec-' + i);
+    if (s) s.style.display = i === n ? 'block' : 'none';
+    const t = document.getElementById('stab-' + i);
+    if (t) {
+      t.classList.remove('active','done');
+      if (i < n) t.classList.add('done');
+      else if (i === n) t.classList.add('active');
+    }
+  }
+  document.getElementById('order-form').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function toggleProd(el, name) {
+  el.classList.toggle('selected');
+  if (el.classList.contains('selected')) selectedProds.push(name);
+  else selectedProds = selectedProds.filter(p => p !== name);
+  const c = document.getElementById('prod-count');
+  c.textContent = selectedProds.length ? selectedProds.length + ' shirt' + (selectedProds.length > 1 ? 's' : '') + ' selected' : '';
+}
+
+function toggleColour(el, name) {
+  el.classList.toggle('selected');
+  if (el.classList.contains('selected')) selectedColours.push(name);
+  else selectedColours = selectedColours.filter(c => c !== name);
+}
+
+function updateSizePreview() {
+  const from = document.getElementById('size-from').value;
+  const to   = document.getElementById('size-to').value;
+  const fi = SIZES.indexOf(from), ti = SIZES.indexOf(to);
+  const prev = document.getElementById('size-preview');
+  if (fi > ti) { prev.innerHTML = '<span style="color:var(--orange);font-size:.7rem;">⚠ From must be smaller than To</span>'; return; }
+  prev.innerHTML = SIZES.slice(fi, ti + 1).map(s => `<span class="size-chip">${s}</span>`).join('');
+}
+
+function updateQtyHint() {
+  const qty = parseInt(document.getElementById('total-qty').value) || 0;
+  const hint = document.getElementById('qty-hint');
+  if (!qty) { hint.textContent = 'Minimum 12 pieces per order.'; hint.style.color = '#aaa'; }
+  else if (qty < 12) { hint.textContent = '⚠ Minimum 12 pieces required.'; hint.style.color = 'var(--orange)'; }
+  else if (qty >= 50) { hint.innerHTML = `✓ ${qty} pieces — best wholesale rate applies.`; hint.style.color = 'var(--green)'; }
+  else if (qty >= 25) { hint.innerHTML = `✓ ${qty} pieces — growth rate applies.`; hint.style.color = 'var(--blue)'; }
+  else { hint.innerHTML = `✓ ${qty} pieces — confirmed.`; hint.style.color = 'var(--green)'; }
+}
+
+function buildSummary() {
+  const from = document.getElementById('size-from').value;
+  const to   = document.getElementById('size-to').value;
+  const qty  = document.getElementById('total-qty').value;
+  const note = document.getElementById('size-note').value.trim();
+  const fi = SIZES.indexOf(from), ti = SIZES.indexOf(to);
+  const range = SIZES.slice(fi, ti + 1).join(' → ');
+  document.getElementById('order-summary').innerHTML = `
+    <div class="os-title">Your Order Summary</div>
+    <div class="os-row"><span class="os-key">Shirts</span><span class="os-val">${selectedProds.join(', ')}</span></div>
+    <div class="os-row"><span class="os-key">Colours</span><span class="os-val">${selectedColours.join(', ')}</span></div>
+    <div class="os-row"><span class="os-key">Size range</span><span class="os-val">${range}</span></div>
+    <div class="os-row"><span class="os-key">Total qty</span><span class="os-val">${qty} pieces</span></div>
+    ${note ? `<div class="os-row"><span class="os-key">Breakdown</span><span class="os-val">${note}</span></div>` : ''}
+  `;
+}
+
+function submitOrder() {
+  const name  = document.getElementById('f-name').value.trim();
+  const shop  = document.getElementById('f-shop').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const city  = document.getElementById('f-city').value.trim();
+  if (!name)  { showToast('Please enter your name.'); return; }
+  if (!shop)  { showToast('Please enter your business name.'); return; }
+  if (!phone) { showToast('Please enter your WhatsApp number.'); return; }
+  if (!email) { showToast('Please enter your email.'); return; }
+  if (!city)  { showToast('Please enter your city.'); return; }
+
+  const state    = document.getElementById('f-state').value;
+  const gst      = document.getElementById('f-gst').value.trim();
+  const timeline = document.getElementById('f-timeline').value;
+  const note     = document.getElementById('f-note').value.trim();
+  const from     = document.getElementById('size-from').value;
+  const to       = document.getElementById('size-to').value;
+  const qty      = document.getElementById('total-qty').value;
+  const breakdown= document.getElementById('size-note').value.trim();
+  const fi = SIZES.indexOf(from), ti = SIZES.indexOf(to);
+  const sizeRange = SIZES.slice(fi, ti + 1).join(' to ');
+  const refId = 'KCW' + Date.now().toString().slice(-6);
+
+  const waText = encodeURIComponent(
+    `*KC Pride — Bulk Order Inquiry*\nRef: ${refId}\n\n` +
+    `*Customer Details*\n` +
+    `Name: ${name}\nShop: ${shop}\nPhone: ${phone}\nEmail: ${email}\n` +
+    `City: ${city}${state ? ', ' + state : ''}\n` +
+    (gst ? `GST: ${gst}\n` : '') +
+    `\n*Order Details*\n` +
+    `Shirts: ${selectedProds.join(', ')}\n` +
+    `Colours: ${selectedColours.join(', ')}\n` +
+    `Sizes: ${sizeRange}\nQty: ${qty} pieces\n` +
+    (breakdown ? `Breakdown: ${breakdown}\n` : '') +
+    (timeline ? `Timeline: ${timeline}\n` : '') +
+    (note ? `\nNote: ${note}` : '')
+  );
+
+  document.getElementById('ref-id').textContent = refId;
+  document.getElementById('wa-followup').href = `https://wa.me/919042883202?text=${waText}`;
+  document.getElementById('form-body').style.display = 'none';
+  document.getElementById('card-header').style.display = 'none';
+  document.getElementById('success-screen').classList.add('show');
+  document.querySelector('.form-wrap').scrollIntoView({ behavior:'smooth' });
+
+  // Open WhatsApp
+  setTimeout(() => window.open(`https://wa.me/919042883202?text=${waText}`, '_blank'), 800);
+
+  // Open Email client
+  const subj = encodeURIComponent(`Bulk Order Inquiry — ${refId} — ${shop}`);
+  const body = encodeURIComponent(
+    `KC Pride Bulk Order Inquiry\nRef: ${refId}\n\n` +
+    `Name: ${name}\nShop: ${shop}\nPhone: ${phone}\nEmail: ${email}\n` +
+    `City: ${city}${state ? ', ' + state : ''}\n` + (gst ? `GST: ${gst}\n` : '') +
+    `\nShirts: ${selectedProds.join(', ')}\nColours: ${selectedColours.join(', ')}\n` +
+    `Sizes: ${sizeRange}\nQty: ${qty} pieces\n` +
+    (breakdown ? `Breakdown: ${breakdown}\n` : '') +
+    (timeline ? `Timeline: ${timeline}\n` : '') +
+    (note ? `\nNote: ${note}` : '')
+  );
+  setTimeout(() => { window.location.href = `mailto:wholesale@kcpride.in?subject=${subj}&body=${body}`; }, 2000);
+}
+
+let toastTimer;
+function showToast(msg) {
+  document.getElementById('toast-msg').textContent = msg;
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+updateSizePreview();
+</script>
+</body>
+</html>
