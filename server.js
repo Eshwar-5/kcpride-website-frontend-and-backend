@@ -2,18 +2,27 @@ require('dotenv').config();
 const express = require('express');
 const cors    = require('cors');
 const path    = require('path');
+const helmet  = require('helmet');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 
 // ─── MIDDLEWARE ───────────────────────────────────────────────────────────
+app.use(helmet());
+
+// Apply rate limiting to all /api routes
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  standardHeaders: true, 
+  legacyHeaders: false, 
+  message: { success: false, message: 'Too many requests from this IP, please try again later.' }
+});
+app.use('/api', apiLimiter);
+
 app.use(cors({
-  origin: [
-    process.env.FRONTEND_URL,
-    'http://localhost:3000',
-    'http://127.0.0.1:5500',  // VS Code Live Server
-    'http://localhost:5500',
-  ],
-  credentials: true,
+  origin: '*',
+  credentials: false,
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
