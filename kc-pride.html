@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KC Pride – Premium Formal Shirts</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <style>
   :root {
     --blue: #2563b0;
@@ -1966,20 +1967,98 @@
     document.getElementById('p-orb-total').textContent = '₹' + (discounted + del);
   }
 
-  function placeOrder() {
+  const API_BASE = 'http://localhost:5000'; // ← change to live URL when deployed
+
+  async function placeOrder() {
     if (payMethod === 'card') {
-      const num = document.getElementById('p-card-num').value.replace(/\s/g, '');
-      if (num.length < 16) { showToast('Please enter a valid card number.'); return; }
+      const num = (document.getElementById('p-card-num') || document.getElementById('card-num'))
+                    ?.value.replace(/\s/g, '');
+      if (!num || num.length < 16) { showToast('Please enter a valid card number.'); return; }
     }
-    const orderId = 'KCP' + Date.now().toString().slice(-6);
-    document.getElementById('p-order-id').textContent = orderId;
-    document.querySelectorAll('.p-section').forEach(s => s.classList.remove('active'));
-    document.getElementById('psec-success').classList.add('active');
+
+    const g = (id1, id2) => (document.getElementById(id1) || document.getElementById(id2))?.value?.trim() || '';
+    const fname   = g('p-fname',   'fname');
+    const lname   = g('p-lname',   'lname');
+    const email   = g('p-email',   'email');
+    const phone   = g('p-phone',   'phone');
+    const address = g('p-address', 'address');
+    const city    = g('p-city',    'city');
+    const pin     = g('p-pin',     'pincode');
+    const state   = g('p-state',   'state');
+
+    const subtotal     = cart.reduce((s, c) => s + c.price * c.qty, 0);
+    const discountAmt  = appliedCoupon ? Math.round(subtotal * appliedCoupon.pct / 100) : 0;
+    const discounted   = subtotal - discountAmt;
+    const deliveryCost = discounted >= 999 ? 0 : 99;
+    const total        = discounted + deliveryCost;
+
+    const payload = {
+      customer:        { firstName: fname, lastName: lname, email, phone },
+      delivery:        { address, city, pincode: pin, state },
+      items:           cart.map(c => ({ productId: c.id, name: c.name, price: c.price, qty: c.qty, size: c.size || 'M' })),
+      subtotal,
+      discount:        discountAmt,
+      coupon:          appliedCoupon?.code || null,
+      delivery_charge: deliveryCost,
+      total,
+      paymentMethod:   payMethod,
+    };
+
+    try {
+      showToast('Processing your order...');
+
+      const res  = await fetch(`${API_BASE}/api/payment/create-order`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!data.success) { showToast(data.message || 'Order creation failed.'); return; }
+
+      if (data.cod) { _showSuccess(data.orderId); return; }
+
+      const rzp = new Razorpay({
+        key:         data.razorpayKeyId,
+        amount:      data.amount,
+        currency:    data.currency,
+        name:        'KC Pride',
+        description: 'Premium Formal Shirts',
+        order_id:    data.razorpayOrderId,
+        prefill:     { name: data.customerName, email: data.customerEmail, contact: data.customerPhone },
+        theme:       { color: '#2563b0' },
+        handler: async (response) => {
+          const vRes = await fetch(`${API_BASE}/api/payment/verify`, {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify({ ...response, _id: data._id }),
+          });
+          const vData = await vRes.json();
+          vData.success ? _showSuccess(vData.orderId) : showToast('Payment verification failed. Contact us.');
+        },
+        modal: { ondismiss: () => showToast('Payment cancelled. Your cart is saved.') },
+      });
+      rzp.open();
+
+    } catch (err) {
+      console.error('Order error:', err);
+      showToast('Something went wrong. Please try again.');
+    }
+  }
+
+  function _showSuccess(orderId) {
+    const el = document.getElementById('p-order-id') || document.getElementById('order-id');
+    if (el) el.textContent = orderId;
+    document.querySelectorAll('.p-section, .payment-section').forEach(s => s.classList.remove('active'));
+    const successEl = document.getElementById('psec-success');
+    if (successEl) successEl.classList.add('active');
     document.querySelectorAll('.pstep').forEach(s => s.classList.add('done'));
     cart = [];
-    saveCart();
-    updateBadge();
-    [1, 2, 3].forEach(id => updateBtnState(id));
+    if (typeof appliedCoupon !== 'undefined') appliedCoupon = null;
+    if (typeof saveCart === 'function') saveCart();
+    if (typeof updateBadge === 'function') updateBadge();
+    if (typeof updateCartBadge === 'function') updateCartBadge();
+    if (typeof renderGrid === 'function') renderGrid();
+    if (typeof updateBtnState === 'function') [1, 2, 3].forEach(id => updateBtnState(id));
   }
 
   function fmtCard(input) {
