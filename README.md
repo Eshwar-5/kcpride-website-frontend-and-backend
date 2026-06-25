@@ -1,5 +1,11 @@
 # KC Pride — Full Stack E-Commerce Backend
 
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
+
 > Production-ready Node.js + Express backend for KC Pride formal shirts.
 > Uses **Supabase (PostgreSQL)** as database, Razorpay for payments, Nodemailer for emails, and Twilio for WhatsApp notifications.
 
@@ -34,6 +40,16 @@
 
 ---
 
+## Security & Best Practices
+
+- **API Rate Limiting:** Limits requests (100 req/15 min) to prevent brute-force and DDoS attacks.
+- **Security Headers (Helmet):** Secures HTTP response headers against common web vulnerabilities.
+- **Webhook Verification:** Server-side HMAC-SHA256 signature verification for Razorpay webhooks to prevent spoofing.
+- **Authentication:** JWT (JSON Web Tokens) protection for admin API endpoints.
+- **Data Protection:** CORS configuration, `.env` file for secrets management, and global error handling.
+
+---
+
 ## Project Structure
 
 ```
@@ -65,6 +81,11 @@ kcpride-backend/
 ---
 
 ## Setup (Step by Step)
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+- Git
 
 ### Step 1 — Create Supabase project (free)
 1. Go to [supabase.com](https://supabase.com) → New Project
